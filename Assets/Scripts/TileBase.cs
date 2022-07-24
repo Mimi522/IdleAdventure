@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileTypeBase : ScriptableObject
+public class TileBase : ScriptableObject
 {
     public string DisplayName;
 
