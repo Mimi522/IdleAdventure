@@ -1,12 +1,12 @@
 using System;
 
-public class Grid
+public class TileGrid
 {
     private int _rows;
     private int _columns;
-    private TileTypeBase[,] _grid;
+    private Tile[,] _grid;
 
-    public Grid(int rows, int columns)
+    public TileGrid(int rows, int columns)
     {
         if (rows <= 0 || columns <= 0)
             throw new ArgumentOutOfRangeException();
@@ -14,17 +14,17 @@ public class Grid
         _rows = rows;
         _columns = columns;
 
-        _grid = new TileTypeBase[_rows, _columns];
+        _grid = new Tile[_rows, _columns];
     }
 
-    public TileTypeBase GetTile(int row, int column)
+    public Tile GetTile(int row, int column)
     {
         CheckInvalidIndexAndThrow(row, column);
 
         return _grid[row, column];
     }
 
-    public void SetTile(int row, int column, TileTypeBase tile)
+    public void SetTile(int row, int column, Tile tile)
     {
         CheckInvalidIndexAndThrow(row, column);
 
