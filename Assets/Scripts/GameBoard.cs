@@ -113,7 +113,7 @@ public class GameBoard : MonoBehaviour
         Tile tile = _boardGrid.GetTile((int)_startPosition.x, (int)_startPosition.y);
         Vector3 tilePosition = tile.TileVisual.transform.position;
 
-        Vector3 playerPosition = tilePosition + new Vector3(0, 1, 0);
+        Vector3 playerPosition = tilePosition;
 
         _player = Instantiate(PlayerPrefab, playerPosition, Quaternion.identity);
     }
@@ -127,7 +127,7 @@ public class GameBoard : MonoBehaviour
 
         Vector3 tilePosition = TargetTile.TileVisual.transform.position;
 
-        _newPosition = tilePosition + new Vector3(0, 1, 0);
+        _newPosition = tilePosition;
     }
 
     private void CallEvent()
