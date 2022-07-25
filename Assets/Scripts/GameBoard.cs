@@ -12,19 +12,13 @@ public class GameBoard : MonoBehaviour
 
     private GameObject _playerPawn;
 
-    [SerializeField]
-    private int _rows = 9;
-    [SerializeField]
-    private int _columns = 6;
+    [SerializeField] private int _rows = 9;
+    [SerializeField] private int _columns = 6;
 
-    [SerializeField]
-    private float _spacing = 1f;
+    [SerializeField] private float _spacing = 1f;
+    [SerializeField] private float _playerSpeed = 5f;
 
-    [SerializeField]
-    private List<Vector2> _pathPositions;
-
-    [SerializeField]
-    private float _playerSpeed = 5f;
+    [SerializeField] private List<Vector2> _pathPositions;
 
     private Vector3 _newPosition;
 

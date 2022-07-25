@@ -5,8 +5,7 @@ public class Object : ScriptableObject
 {
     public string DisplayName;
 
-    [TextArea]
-    public string Description;
+    [TextArea] public string Description;
 
     public GameObject VisualPrefab;
 
