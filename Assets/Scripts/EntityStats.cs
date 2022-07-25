@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityStatus : MonoBehaviour
+public class EntityStats : MonoBehaviour
 {
     [SerializeField] private int _hp;
     public int Hp {
