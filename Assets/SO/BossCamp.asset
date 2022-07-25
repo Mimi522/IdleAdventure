@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b6b626f8b6ebe49bae8028d8d41fbb, type: 3}
+  m_Name: BossCamp
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  Description: 
+  VisualPrefab: {fileID: 1823006784060127471, guid: 6c17548194a805545b64ea23bf5688f0, type: 3}
+  Monsters:
+  - {fileID: 6758435555555826690, guid: 183fd15049b814146aa5ce3ca75ca708, type: 3}

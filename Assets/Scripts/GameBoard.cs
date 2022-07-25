@@ -9,6 +9,8 @@ public class GameBoard : MonoBehaviour
     public GameObject PathPrefab;
     public GameObject PawnPrefab;
     public Object MonsterCamp;
+    public Object MonsterCamp2;
+    public Object BossCamp;
 
     private GameObject _playerPawn;
 
@@ -97,9 +99,12 @@ public class GameBoard : MonoBehaviour
             Tile tile = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
             tile.UpdateTile(PathPrefab);
 
-            if (i == 2 || i == 7) {
-                //tile.ObjectData = MonsterCampTile;
+            if (i == 2) {
                 tile.HoldObject(MonsterCamp);
+            } else if (i == 7) {
+                tile.HoldObject(MonsterCamp2);
+            } else if (i == 13) {
+                tile.HoldObject(BossCamp);
             }
         }
     }

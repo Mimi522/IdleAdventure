@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &229339530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1859604120, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
+  m_PrefabInstance: {fileID: 5942403383912844094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &570745330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1126554109, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
+  m_PrefabInstance: {fileID: 5942403383912844094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Arena: {fileID: 1369873799}
+  SpawnPositions:
+  - {fileID: 570745330}
+  - {fileID: 229339530}
 --- !u!1 &1369873799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5942403383865346460, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
@@ -449,9 +462,12 @@ MonoBehaviour:
   PathPrefab: {fileID: 8423069778630242682, guid: 0bda64821e1b7214aa994dc283f05ad6, type: 3}
   PawnPrefab: {fileID: 1306510727193889572, guid: b545ab349fd640047946337d670aebed, type: 3}
   MonsterCamp: {fileID: 11400000, guid: d2bded6e2d3b5c9478c87ebdb2554ac5, type: 2}
+  MonsterCamp2: {fileID: 11400000, guid: b2cc493bc4986af4dadd9887907b6f0c, type: 2}
+  BossCamp: {fileID: 11400000, guid: a3ba9c019fc63b44899ff7010b2fb73f, type: 2}
   _rows: 9
   _columns: 6
   _spacing: 1
+  _playerSpeed: 1
   _pathPositions:
   - {x: 1, y: 0}
   - {x: 2, y: 0}
@@ -475,7 +491,6 @@ MonoBehaviour:
   - {x: 1, y: 3}
   - {x: 1, y: 2}
   - {x: 1, y: 1}
-  _playerSpeed: 1
 --- !u!4 &1749379764
 Transform:
   m_ObjectHideFlags: 0
