@@ -7,6 +7,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(EntityStats))]
 public class Entity : MonoBehaviour
 {
+    public event Action<Entity> OnAttack;
+    public event Action<Entity> OnDeath;
+    public UnityEvent<float> OnHealthChange;
+
     private EntityStats _entityStats;
     public EntityStats EntityStats {
         get { return _entityStats; }
@@ -17,8 +21,6 @@ public class Entity : MonoBehaviour
         get { return _currentHp; }
     }
 
-    public UnityEvent<float> OnHealthChange;
-
     void OnEnable()
     {
         _entityStats = GetComponent<EntityStats>();
@@ -27,12 +29,43 @@ public class Entity : MonoBehaviour
 
     public void Dispose()
     {
+        OnAttack += null;
+        OnDeath += null;
         Destroy(gameObject);
+    }
+
+    public void StartAttacking()
+    {
+        StartCoroutine(Attack());
+    }
+
+    public void StopAttacking()
+    {
+        StopCoroutine(Attack());
+    }
+
+    private IEnumerator Attack()
+    {
+        while (_currentHp > 0) {
+            // Turn into protected variable on base
+            yield return new WaitForSeconds(EntityStats.AttackCooldown);
+            OnAttack?.Invoke(this);
+        }
     }
 
     public void TakeDamage(int value)
     {
+        if (_currentHp <= 0)
+            return;
+
         _currentHp -= value;
+
+        if (_currentHp <= 0) {
+            _currentHp = 0;
+            StopAttacking();
+            OnDeath?.Invoke(this);
+        }
+
         OnHealthChange?.Invoke((float)_currentHp / _entityStats.Hp);
     }
 }

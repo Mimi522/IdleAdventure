@@ -31,6 +31,8 @@ public partial class BattleManager : MonoBehaviour
         _enemies = new List<Entity>();
         _enemiesActions = new List<Coroutine>();
         _player = Arena.transform.Find("Player").GetComponent<Entity>();
+        _player.OnAttack += PlayerAttack;
+        _player.OnDeath += PlayerDeath;
     }
 
     public void StartBattle(GameObject[] enemiesPrefab)
@@ -38,38 +40,26 @@ public partial class BattleManager : MonoBehaviour
         Debug.Log("Battle in motion!");
         Arena.SetActive(true);
         SpawnEnemies(enemiesPrefab);
-        _playerAction = StartCoroutine(PlayerAttack());
-
-        for (int i = 0; i < _enemies.Count; i++) {
-            _enemiesActions.Add(StartCoroutine(EnemyAttack(_enemies[i].EntityStats)));
+        _player.StartAttacking();
+        foreach (Entity enemy in _enemies) {
+            enemy.StartAttacking();
         }
     }
 
-    private IEnumerator PlayerAttack()
+    private void PlayerAttack(Entity player)
     {
-        while (_enemies.Count > 0) {
-            yield return new WaitForSeconds(_player.EntityStats.AttackCooldown);
-            _enemies[0].TakeDamage(_player.EntityStats.DamageDealt);
-            Debug.Log(string.Format("Player inflicts {0} damage on enemy!", _player.EntityStats.DamageDealt));
-            CheckForEnemyKill();
+        if (_enemies.Count > 0) {
+            _enemies[0].TakeDamage(player.EntityStats.DamageDealt);
+            Debug.Log(string.Format("Player inflicts {0} damage on enemy!", player.EntityStats.DamageDealt));
         }
-
-        OnBattleEnded?.Invoke();
-        Debug.Log("Battle ended!");
-        Arena.SetActive(false);
     }
 
-    private IEnumerator EnemyAttack(EntityStats enemyStats)
+    private void EnemyAttack(Entity enemyStats)
     {
-        while (_player.CurrentHp > 0) {
-            yield return new WaitForSeconds(enemyStats.AttackCooldown);
-            _player.TakeDamage(enemyStats.DamageDealt);
-            Debug.Log(String.Format("Enemy inflicts {0} damage on player!", enemyStats.DamageDealt));
+        if (_player.CurrentHp > 0) {
+            _player.TakeDamage(enemyStats.EntityStats.DamageDealt);
+            Debug.Log(String.Format("Enemy inflicts {0} damage on player!", enemyStats.EntityStats.DamageDealt));
         }
-
-        StopCoroutine(_playerAction);
-        Destroy(Arena.transform.Find("Player").gameObject);
-        Debug.Log("GAME OVER");
     }
 
     private void SpawnEnemies(GameObject[] enemiesPrefab)
@@ -79,17 +69,27 @@ public partial class BattleManager : MonoBehaviour
         for (int i = 0; i < positions.Count; i++) {
             var go = Instantiate(enemiesPrefab[i], positions[i], Quaternion.identity);
             _enemies.Add(go.GetComponent<Entity>());
+            _enemies[i].OnAttack += EnemyAttack;
+            _enemies[i].OnDeath += EnemyDeath;
         }
     }
 
-    private void CheckForEnemyKill()
+    private void EnemyDeath(Entity enemy)
     {
-        if (_enemies[0].CurrentHp <= 0) {
-            StopCoroutine(_enemiesActions[0]);
-            _enemiesActions.RemoveAt(0);
-            Debug.Log(_enemies[0].name + " killed!");
-            _enemies[0].Dispose();
-            _enemies.RemoveAt(0);
+        Debug.Log(enemy.name + " killed!");
+        enemy.Dispose();
+        _enemies.RemoveAt(0);
+
+        if (_enemies.Count == 0) {
+            OnBattleEnded?.Invoke();
+            Debug.Log("Battle ended!");
+            Arena.SetActive(false);
         }
+    }
+
+    private void PlayerDeath(Entity player)
+    {
+        player.Dispose();
+        Debug.Log("GAME OVER");
     }
 }
