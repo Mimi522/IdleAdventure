@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
-    public DefaultTileFactory[] GrassPrefabsVariant;
-    public DefaultTileFactory NewLook;
+    public GameObject[] GrassPrefabsVariant;
+    public GameObject PathPrefab;
     public GameObject PlayerPrefab;
     public Object SpawnTile;
 
@@ -101,7 +101,7 @@ public class GameBoard : MonoBehaviour
         for (int i = 0; i < _pathPositions.Count; i++) {
             // Invert those on inspector eventually
             Tile tile = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
-            tile.UpdateTile(NewLook);
+            tile.UpdateTile(PathPrefab);
 
             if (i == 2 || i == 7)
                 tile.ObjectData = SpawnTile;

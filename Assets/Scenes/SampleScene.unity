@@ -438,37 +438,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GrassPrefabsVariant:
-  - {fileID: 11400000, guid: deaa5b4434fd4aa4f9c784c68f1f17cb, type: 2}
-  - {fileID: 11400000, guid: ac6e0c5502480d6439ef78f7fa92a479, type: 2}
-  NewLook: {fileID: 11400000, guid: b1f890ebcecf9e74da561c0429dd330d, type: 2}
-  playerPrefab: {fileID: 8423069778630242682, guid: 2adb8684dda1c1149a72df8f3ac8a8a6, type: 3}
+  - {fileID: 8423069778630242682, guid: 73dc55c6aa5126a448cf4db110e74a77, type: 3}
+  - {fileID: 8423069778630242682, guid: ddd729b34bd15984caf45390a3e48ef7, type: 3}
+  PathPrefab: {fileID: 8423069778630242682, guid: 0bda64821e1b7214aa994dc283f05ad6, type: 3}
+  PlayerPrefab: {fileID: 8423069778630242682, guid: 2adb8684dda1c1149a72df8f3ac8a8a6, type: 3}
   SpawnTile: {fileID: 11400000, guid: d2bded6e2d3b5c9478c87ebdb2554ac5, type: 2}
   _rows: 9
   _columns: 6
   _spacing: 1
   _pathPositions:
-  - {x: 2, y: 1}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: 3, y: 0}
   - {x: 3, y: 1}
   - {x: 4, y: 1}
-  - {x: 4, y: 2}
-  - {x: 5, y: 2}
-  - {x: 6, y: 2}
+  - {x: 5, y: 1}
+  - {x: 6, y: 1}
+  - {x: 7, y: 1}
   - {x: 7, y: 2}
-  - {x: 8, y: 2}
-  - {x: 8, y: 3}
-  - {x: 8, y: 4}
-  - {x: 8, y: 5}
-  - {x: 8, y: 6}
-  - {x: 7, y: 6}
-  - {x: 6, y: 6}
-  - {x: 5, y: 6}
-  - {x: 4, y: 6}
-  - {x: 3, y: 6}
-  - {x: 2, y: 6}
+  - {x: 7, y: 3}
+  - {x: 7, y: 4}
+  - {x: 7, y: 5}
+  - {x: 6, y: 5}
+  - {x: 5, y: 5}
+  - {x: 4, y: 5}
+  - {x: 3, y: 5}
   - {x: 2, y: 5}
-  - {x: 2, y: 4}
-  - {x: 2, y: 3}
-  - {x: 2, y: 2}
+  - {x: 1, y: 5}
+  - {x: 1, y: 4}
+  - {x: 1, y: 3}
+  - {x: 1, y: 2}
+  - {x: 1, y: 1}
   _playerSpeed: 1
 --- !u!4 &1749379764
 Transform:

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tile
 {
-    private TileBase _tileData;
     private Object _objectData;
     public Object ObjectData {
         get { return _objectData; }
@@ -18,18 +17,16 @@ public class Tile
 
     private GameObject _objectVisual;
 
-    public Tile(TileBase tileData, Vector3 visualPosition)
+    public Tile(GameObject tilePrefab, Vector3 visualPosition)
     {
-        _tileData = tileData;
-        _tileVisual = GameObject.Instantiate(_tileData.TilePrefab, visualPosition, Quaternion.identity);
+        _tileVisual = GameObject.Instantiate(tilePrefab, visualPosition, Quaternion.identity);
     }
 
-    public void UpdateTile(TileBase tileData)
+    public void UpdateTile(GameObject tilePrefab)
     {
-        _tileData = tileData;
         Vector3 tilePosition = _tileVisual.transform.position;
 
         GameObject.Destroy(_tileVisual);
-        _tileVisual = GameObject.Instantiate(_tileData.TilePrefab, tilePosition, Quaternion.identity);
+        _tileVisual = GameObject.Instantiate(tilePrefab, tilePosition, Quaternion.identity);
     }
 }
