@@ -9,6 +9,8 @@ public class BattleManager : MonoBehaviour
 
     public event Action OnBattleEnded;
 
+    public GameObject Arena;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -25,8 +27,10 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator Delay()
     {
+        Arena.SetActive(true);
         yield return new WaitForSeconds(2);
         OnBattleEnded?.Invoke();
         Debug.Log("Battle ended!");
+        Arena.SetActive(false);
     }
 }
