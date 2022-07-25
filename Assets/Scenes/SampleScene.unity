@@ -123,16 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &229339530 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1859604120, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
+--- !u!114 &229339532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1859604122, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
   m_PrefabInstance: {fileID: 5942403383912844094}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &570745330 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1126554109, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58932bd2aac5e54fb709afe240361f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &570745332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1126554111, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
   m_PrefabInstance: {fileID: 5942403383912844094}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58932bd2aac5e54fb709afe240361f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,8 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Arena: {fileID: 1369873799}
   SpawnPositions:
-  - {fileID: 570745330}
-  - {fileID: 229339530}
+  - {fileID: 570745332}
+  - {fileID: 229339532}
 --- !u!1 &1369873799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5942403383865346460, guid: d70d56b864f349f4eb50761742e7b342, type: 3}

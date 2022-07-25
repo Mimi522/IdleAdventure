@@ -370,6 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8423069778630242678}
   - component: {fileID: 4110255652518633709}
+  - component: {fileID: 5776848159864219199}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -408,3 +409,30 @@ MonoBehaviour:
   _hp: 100
   _damageDealt: 5
   _attackCooldown: 2
+--- !u!114 &5776848159864219199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423069778630242682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9db51b9d20e8c42a969ccaa0c778b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4144791338128796580}
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
+        m_MethodName: UpdateBar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

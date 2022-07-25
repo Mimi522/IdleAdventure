@@ -4,28 +4,22 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour
+public partial class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; private set; }
 
     public event Action OnBattleEnded;
-    public event Action<int> OnHealthChange;
 
     public GameObject Arena;
 
-    public GameObject[] SpawnPositions;
+    public SpawnLocationProvider[] SpawnPositions;
 
-    private List<Enemy> _enemies;
+    private Entity _player;
+
+    private List<Entity> _enemies;
     private List<Coroutine> _enemiesActions;
 
-    private EntityStats _playerStats;
-    public EntityStats PlayerStats {
-        get { return _playerStats; }
-    }
-
     private Coroutine _playerAction;
-
-    private int _playerCurrentHp;
 
     void Awake()
     {
@@ -34,10 +28,9 @@ public class BattleManager : MonoBehaviour
         else
             Instance = this;
 
-        _enemies = new List<Enemy>();
+        _enemies = new List<Entity>();
         _enemiesActions = new List<Coroutine>();
-        _playerStats = Arena.transform.Find("Player").GetComponent<EntityStats>();
-        _playerCurrentHp = _playerStats.Hp;
+        _player = Arena.transform.Find("Player").GetComponent<Entity>();
     }
 
     public void StartBattle(GameObject[] enemiesPrefab)
@@ -48,17 +41,16 @@ public class BattleManager : MonoBehaviour
         _playerAction = StartCoroutine(PlayerAttack());
 
         for (int i = 0; i < _enemies.Count; i++) {
-            _enemiesActions.Add(StartCoroutine(EnemyAttack(_enemies[i].Stats)));
+            _enemiesActions.Add(StartCoroutine(EnemyAttack(_enemies[i].EntityStats)));
         }
     }
 
     private IEnumerator PlayerAttack()
     {
         while (_enemies.Count > 0) {
-            yield return new WaitForSeconds(_playerStats.AttackCooldown);
-            _enemies[0].CurrentHp -= _playerStats.DamageDealt;
-            //OnHealthChange?.Invoke(_enemies[0].GameObject, _enemies[0].CurrentHp);
-            Debug.Log(string.Format("Player inflicts {0} damage on enemy!", _playerStats.DamageDealt));
+            yield return new WaitForSeconds(_player.EntityStats.AttackCooldown);
+            _enemies[0].TakeDamage(_player.EntityStats.DamageDealt);
+            Debug.Log(string.Format("Player inflicts {0} damage on enemy!", _player.EntityStats.DamageDealt));
             CheckForEnemyKill();
         }
 
@@ -69,10 +61,9 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator EnemyAttack(EntityStats enemyStats)
     {
-        while (_playerCurrentHp > 0) {
+        while (_player.CurrentHp > 0) {
             yield return new WaitForSeconds(enemyStats.AttackCooldown);
-            _playerCurrentHp -= enemyStats.DamageDealt;
-            OnHealthChange?.Invoke(_playerCurrentHp);
+            _player.TakeDamage(enemyStats.DamageDealt);
             Debug.Log(String.Format("Enemy inflicts {0} damage on player!", enemyStats.DamageDealt));
         }
 
@@ -83,11 +74,11 @@ public class BattleManager : MonoBehaviour
 
     private void SpawnEnemies(GameObject[] enemiesPrefab)
     {
-        // Change to transform
-        List<Transform> positions = SpawnPositions[enemiesPrefab.Length - 1].transform.Cast<Transform>().ToList();
+        List<Vector3> positions = SpawnPositions[enemiesPrefab.Length - 1].GetLocations();
 
         for (int i = 0; i < positions.Count; i++) {
-            _enemies.Add(new Enemy(Instantiate(enemiesPrefab[i], positions[i].position, Quaternion.identity)));
+            var go = Instantiate(enemiesPrefab[i], positions[i], Quaternion.identity);
+            _enemies.Add(go.GetComponent<Entity>());
         }
     }
 
@@ -96,28 +87,9 @@ public class BattleManager : MonoBehaviour
         if (_enemies[0].CurrentHp <= 0) {
             StopCoroutine(_enemiesActions[0]);
             _enemiesActions.RemoveAt(0);
-            Debug.Log(_enemies[0].GameObject.name + " killed!");
+            Debug.Log(_enemies[0].name + " killed!");
             _enemies[0].Dispose();
             _enemies.RemoveAt(0);
-        }
-    }
-
-    private class Enemy
-    {
-        public GameObject GameObject;
-        public EntityStats Stats;
-        public int CurrentHp;
-
-        public Enemy(GameObject enemyPrefab)
-        {
-            GameObject = enemyPrefab;
-            Stats = GameObject.GetComponent<EntityStats>();
-            CurrentHp = Stats.Hp;
-        }
-
-        public void Dispose()
-        {
-            Destroy(GameObject);
         }
     }
 }
