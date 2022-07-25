@@ -17,7 +17,7 @@ public class BattleManager : MonoBehaviour
             Instance = this;
     }
 
-    public void StartBattle(GameObject player, GameObject[] enemies)
+    public void StartBattle(GameObject[] enemies)
     {
         Debug.Log("Battle in motion!");
         StartCoroutine(Delay());
@@ -27,5 +27,6 @@ public class BattleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         OnBattleEnded?.Invoke();
+        Debug.Log("Battle ended!");
     }
 }

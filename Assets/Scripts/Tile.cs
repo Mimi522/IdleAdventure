@@ -29,4 +29,17 @@ public class Tile
         GameObject.Destroy(_tileVisual);
         _tileVisual = GameObject.Instantiate(tilePrefab, tilePosition, Quaternion.identity);
     }
+
+    public bool HoldObject(Object objectPrefab)
+    {
+        if (_objectData != null)
+            return false;
+
+        Vector3 objectPosition = _tileVisual.transform.position;
+
+        _objectData = objectPrefab;
+        _objectVisual = GameObject.Instantiate(objectPrefab.VisualPrefab, objectPosition, Quaternion.identity);
+
+        return true;
+    }
 }

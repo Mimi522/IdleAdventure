@@ -8,7 +8,7 @@ public class GameBoard : MonoBehaviour
     public GameObject[] GrassPrefabsVariant;
     public GameObject PathPrefab;
     public GameObject PawnPrefab;
-    public Object SpawnTile;
+    public Object MonsterCamp;
 
     private GameObject _playerPawn;
 
@@ -103,8 +103,10 @@ public class GameBoard : MonoBehaviour
             Tile tile = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
             tile.UpdateTile(PathPrefab);
 
-            if (i == 2 || i == 7)
-                tile.ObjectData = SpawnTile;
+            if (i == 2 || i == 7) {
+                //tile.ObjectData = MonsterCampTile;
+                tile.HoldObject(MonsterCamp);
+            }
         }
     }
 
@@ -136,6 +138,6 @@ public class GameBoard : MonoBehaviour
         Tile tile = TargetTile;
 
         tile.ObjectData.OnEventEnded += Test;
-        tile.ObjectData.OnEntered(_playerPawn);
+        tile.ObjectData.OnEntered();
     }
 }

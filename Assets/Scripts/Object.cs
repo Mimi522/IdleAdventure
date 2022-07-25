@@ -12,8 +12,8 @@ public class Object : ScriptableObject
 
     public event Action OnEventEnded;
 
-    public virtual void OnPlaced(GameObject player) { }
-    public virtual void OnEntered(GameObject player) { }
+    public virtual void OnPlaced() { }
+    public virtual void OnEntered() { }
 
     protected void EndEvent()
     {

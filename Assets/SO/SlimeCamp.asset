@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69ab639616fd154183d9b0e8fa35773, type: 3}
-  m_Name: SpawnTest
+  m_Script: {fileID: 11500000, guid: f3b6b626f8b6ebe49bae8028d8d41fbb, type: 3}
+  m_Name: SlimeCamp
   m_EditorClassIdentifier: 
   DisplayName: 
   Description: 
-  VisualPrefab: {fileID: 0}
+  VisualPrefab: {fileID: 1823006784060127471, guid: a0532b11d5d761e49ac6246bb3955d2c, type: 3}
+  Monsters:
+  - {fileID: 6758435555555826690, guid: b5a8d1dd94112024b915b48e64da2649, type: 3}
