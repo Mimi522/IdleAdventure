@@ -419,7 +419,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509998627}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1509998629
 Camera:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ MonoBehaviour:
   - {fileID: 8423069778630242682, guid: 73dc55c6aa5126a448cf4db110e74a77, type: 3}
   - {fileID: 8423069778630242682, guid: ddd729b34bd15984caf45390a3e48ef7, type: 3}
   PathPrefab: {fileID: 8423069778630242682, guid: 0bda64821e1b7214aa994dc283f05ad6, type: 3}
-  PlayerPrefab: {fileID: 8423069778630242682, guid: 2adb8684dda1c1149a72df8f3ac8a8a6, type: 3}
+  PawnPrefab: {fileID: 1306510727193889572, guid: b545ab349fd640047946337d670aebed, type: 3}
   SpawnTile: {fileID: 11400000, guid: d2bded6e2d3b5c9478c87ebdb2554ac5, type: 2}
   _rows: 9
   _columns: 6

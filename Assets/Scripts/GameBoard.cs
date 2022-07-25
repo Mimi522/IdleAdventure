@@ -7,10 +7,10 @@ public class GameBoard : MonoBehaviour
 {
     public GameObject[] GrassPrefabsVariant;
     public GameObject PathPrefab;
-    public GameObject PlayerPrefab;
+    public GameObject PawnPrefab;
     public Object SpawnTile;
 
-    private GameObject _player;
+    private GameObject _playerPawn;
 
     [SerializeField]
     private int _rows = 9;
@@ -69,9 +69,9 @@ public class GameBoard : MonoBehaviour
         if (_walking == false)
             return;
 
-        _player.transform.position = Vector3.MoveTowards(_player.transform.position, _newPosition, _playerSpeed * Time.deltaTime);
-        _player.transform.LookAt(_newPosition);
-        if ((_newPosition - _player.transform.position).magnitude <= 0.02f) {
+        _playerPawn.transform.position = Vector3.MoveTowards(_playerPawn.transform.position, _newPosition, _playerSpeed * Time.deltaTime);
+        _playerPawn.transform.LookAt(_newPosition);
+        if ((_newPosition - _playerPawn.transform.position).magnitude <= 0.02f) {
             if (TargetTile.ObjectData != null) {
                 CallEvent();
                 return;
@@ -115,7 +115,7 @@ public class GameBoard : MonoBehaviour
 
         Vector3 playerPosition = tilePosition;
 
-        _player = Instantiate(PlayerPrefab, playerPosition, Quaternion.identity);
+        _playerPawn = Instantiate(PawnPrefab, playerPosition, Quaternion.identity);
     }
 
     private void SetTargetForPlayer()
@@ -136,6 +136,6 @@ public class GameBoard : MonoBehaviour
         Tile tile = TargetTile;
 
         tile.ObjectData.OnEventEnded += Test;
-        tile.ObjectData.OnEntered(_player);
+        tile.ObjectData.OnEntered(_playerPawn);
     }
 }
