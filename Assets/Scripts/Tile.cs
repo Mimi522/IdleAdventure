@@ -6,6 +6,10 @@ public class Tile
 {
     private TileBase _tileData;
     private Object _objectData;
+    public Object ObjectData {
+        get { return _objectData; }
+        set { _objectData = value; }
+    }
 
     private GameObject _tileVisual;
     public GameObject TileVisual {

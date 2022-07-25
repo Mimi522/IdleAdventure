@@ -7,9 +7,10 @@ public class GameBoard : MonoBehaviour
 {
     public DefaultTileFactory[] GrassPrefabsVariant;
     public DefaultTileFactory NewLook;
-    public GameObject playerPrefab;
+    public GameObject PlayerPrefab;
+    public Object SpawnTile;
 
-    private GameObject player;
+    private GameObject _player;
 
     [SerializeField]
     private int _rows = 9;
@@ -25,20 +26,28 @@ public class GameBoard : MonoBehaviour
     [SerializeField]
     private float _playerSpeed = 5f;
 
-    private Vector3 newPosition = new Vector3(0, 1, 1);
+    private Vector3 _newPosition;
 
-    private Vector2 _startPosition = new Vector2(2, 1);
+    private Vector2 _startPosition;
 
     private int _pathIndex = 0;
 
-    private TileGrid boardGrid;
+    private bool _walking = true;
+
+    private TileGrid _boardGrid;
+
+    private Tile TargetTile {
+        get { return _boardGrid.GetTile((int)_pathPositions[_pathIndex].x, (int)_pathPositions[_pathIndex].y); }
+    }
 
     void Awake()
     {
-        boardGrid = new TileGrid(_rows, _columns);
+        _boardGrid = new TileGrid(_rows, _columns);
         SetInitialGrid();
         InstantiatePath();
-        SetStartPosition();
+        _startPosition = _pathPositions[0];
+        InstantiatePlayer();
+        SetTargetForPlayer();
     }
 
     // Start is called before the first frame update
@@ -47,13 +56,29 @@ public class GameBoard : MonoBehaviour
 
     }
 
+    private void Test()
+    {
+        _walking = true;
+        TargetTile.ObjectData.OnEventEnded -= Test;
+        SetTargetForPlayer();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, newPosition, _playerSpeed * Time.deltaTime);
-        player.transform.LookAt(newPosition);
-        if ((newPosition - player.transform.position).magnitude <= 0.02f)
+        if (_walking == false)
+            return;
+
+        _player.transform.position = Vector3.MoveTowards(_player.transform.position, _newPosition, _playerSpeed * Time.deltaTime);
+        _player.transform.LookAt(_newPosition);
+        if ((_newPosition - _player.transform.position).magnitude <= 0.02f) {
+            if (TargetTile.ObjectData != null) {
+                CallEvent();
+                return;
+            }
+
             SetTargetForPlayer();
+        }
     }
 
     private void SetInitialGrid()
@@ -66,7 +91,7 @@ public class GameBoard : MonoBehaviour
 
                 Tile tile = new Tile(GrassPrefabsVariant[grassVariant], tilePosition);
 
-                boardGrid.SetTile(i, j, tile);
+                _boardGrid.SetTile(i, j, tile);
             }
         }
     }
@@ -74,32 +99,43 @@ public class GameBoard : MonoBehaviour
     private void InstantiatePath()
     {
         for (int i = 0; i < _pathPositions.Count; i++) {
-            Tile tile = boardGrid.GetTile((int)_pathPositions[i].x - 1, (int)_pathPositions[i].y - 1);
+            // Invert those on inspector eventually
+            Tile tile = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
             tile.UpdateTile(NewLook);
+
+            if (i == 2 || i == 7)
+                tile.ObjectData = SpawnTile;
         }
     }
 
-    private void SetStartPosition()
+    private void InstantiatePlayer()
     {
-        Tile tile = boardGrid.GetTile((int)_startPosition.x - 1, (int)_startPosition.y - 1);
+        Tile tile = _boardGrid.GetTile((int)_startPosition.x, (int)_startPosition.y);
         Vector3 tilePosition = tile.TileVisual.transform.position;
 
         Vector3 playerPosition = tilePosition + new Vector3(0, 1, 0);
 
-        player = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
+        _player = Instantiate(PlayerPrefab, playerPosition, Quaternion.identity);
     }
 
-    public void SetTargetForPlayer()
+    private void SetTargetForPlayer()
     {
-        Tile tile = boardGrid.GetTile((int)_pathPositions[_pathIndex].x - 1, (int)_pathPositions[_pathIndex].y - 1);
-
-        Vector3 tilePosition = tile.TileVisual.transform.position;
-
-        newPosition = tilePosition + new Vector3(0, 1, 0);
-
         _pathIndex++;
 
         if (_pathIndex == _pathPositions.Count)
             _pathIndex = 0;
+
+        Vector3 tilePosition = TargetTile.TileVisual.transform.position;
+
+        _newPosition = tilePosition + new Vector3(0, 1, 0);
+    }
+
+    private void CallEvent()
+    {
+        _walking = false;
+        Tile tile = TargetTile;
+
+        tile.ObjectData.OnEventEnded += Test;
+        tile.ObjectData.OnEntered(_player);
     }
 }
