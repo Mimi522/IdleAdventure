@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/*
+-- Class containing base data refering to an entity in game being that
+-- a player or monster.
+*/
 public class EntityStats : MonoBehaviour
 {
     [SerializeField] private int _hp;

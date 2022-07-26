@@ -1,5 +1,9 @@
 using System;
 
+/*
+-- Class responsible for creating the grid, setting the tiles on their 
+-- respective positions and storing them.
+*/
 public class TileGrid
 {
     private int _rows;
@@ -36,7 +40,8 @@ public class TileGrid
         bool isRowOutOfBounds = row < 0 || row > _rows;
         bool isColumnOutOfBounds = column < 0 || column > _columns;
 
-        if (isRowOutOfBounds || isColumnOutOfBounds)
+        if (isRowOutOfBounds || isColumnOutOfBounds) {
             throw new IndexOutOfRangeException();
+        }
     }
 }

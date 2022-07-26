@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
+/*
+-- Class responsible for updating the UI of an entity.
+*/
 [RequireComponent(typeof(Image))]
 public class HealthBar : MonoBehaviour
 {

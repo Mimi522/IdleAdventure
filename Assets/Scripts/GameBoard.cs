@@ -1,8 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+-- Class that creates the game board and manages the player pawn movement
+-- throught it.
+*/
 public class GameBoard : MonoBehaviour
 {
     public GameObject[] GrassPrefabsVariant;
@@ -52,10 +54,10 @@ public class GameBoard : MonoBehaviour
 
     }
 
-    private void Test()
+    private void Move()
     {
         _walking = true;
-        TargetTile.ObjectData.OnEventEnded -= Test;
+        TargetTile.ObjectData.OnEventEnded -= Move;
         SetTargetForPlayer();
     }
 
@@ -136,7 +138,7 @@ public class GameBoard : MonoBehaviour
         _walking = false;
         Tile tile = TargetTile;
 
-        tile.ObjectData.OnEventEnded += Test;
+        tile.ObjectData.OnEventEnded += Move;
         tile.ObjectData.OnEntered();
     }
 }

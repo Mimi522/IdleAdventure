@@ -1,9 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
+/*
+-- Class that contains the positions for monster spawns in battle.
+*/
 public class SpawnLocationProvider : MonoBehaviour
 {
     public List<Vector3> GetLocations()

@@ -1,36 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.Linq;
 using UnityEngine;
 
+/*
+-- Class that controls the battle between player and monster in a monster
+-- camp tile.
+*/
 public partial class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; private set; }
 
     public event Action OnBattleEnded;
 
-    public GameObject Arena;
-
     public SpawnLocationProvider[] SpawnPositions;
 
-    private Entity _player;
+    [SerializeField] private GameObject _arena;
+
+    [SerializeField] private Entity _player;
 
     private List<Entity> _enemies;
-    private List<Coroutine> _enemiesActions;
-
-    private Coroutine _playerAction;
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null && Instance != this) {
             Destroy(this);
-        else
+        } else {
             Instance = this;
-
+        }
         _enemies = new List<Entity>();
-        _enemiesActions = new List<Coroutine>();
-        _player = Arena.transform.Find("Player").GetComponent<Entity>();
+
         _player.OnAttack += PlayerAttack;
         _player.OnDeath += PlayerDeath;
     }
@@ -38,9 +36,12 @@ public partial class BattleManager : MonoBehaviour
     public void StartBattle(GameObject[] enemiesPrefab)
     {
         Debug.Log("Battle in motion!");
-        Arena.SetActive(true);
-        SpawnEnemies(enemiesPrefab);
+        _arena.SetActive(true);
+
         _player.StartAttacking();
+
+        SpawnEnemies(enemiesPrefab);
+
         foreach (Entity enemy in _enemies) {
             enemy.StartAttacking();
         }
@@ -64,11 +65,17 @@ public partial class BattleManager : MonoBehaviour
 
     private void SpawnEnemies(GameObject[] enemiesPrefab)
     {
+        if (enemiesPrefab.Length > SpawnPositions.Length) {
+            Debug.LogError("Number of enemies not supported.");
+            return;
+        }
+
+        // Enemies positions varies accord to the amount of enmies in battle
         List<Vector3> positions = SpawnPositions[enemiesPrefab.Length - 1].GetLocations();
 
         for (int i = 0; i < positions.Count; i++) {
-            var go = Instantiate(enemiesPrefab[i], positions[i], Quaternion.identity);
-            _enemies.Add(go.GetComponent<Entity>());
+            GameObject enemy = Instantiate(enemiesPrefab[i], positions[i], Quaternion.identity);
+            _enemies.Add(enemy.GetComponent<Entity>());
             _enemies[i].OnAttack += EnemyAttack;
             _enemies[i].OnDeath += EnemyDeath;
         }
@@ -83,7 +90,7 @@ public partial class BattleManager : MonoBehaviour
         if (_enemies.Count == 0) {
             OnBattleEnded?.Invoke();
             Debug.Log("Battle ended!");
-            Arena.SetActive(false);
+            _arena.SetActive(false);
         }
     }
 

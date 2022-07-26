@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/*
+-- Class responsible for handling the state of an entity.
+*/
 [RequireComponent(typeof(EntityStats))]
 public class Entity : MonoBehaviour
 {
@@ -21,6 +23,8 @@ public class Entity : MonoBehaviour
         get { return _currentHp; }
     }
 
+    // The Hp is settle on OnEnbale to make sure the it resets when reusing 
+    // the entity
     void OnEnable()
     {
         _entityStats = GetComponent<EntityStats>();
@@ -47,16 +51,16 @@ public class Entity : MonoBehaviour
     private IEnumerator Attack()
     {
         while (_currentHp > 0) {
-            // Turn into protected variable on base
-            yield return new WaitForSeconds(EntityStats.AttackCooldown);
+            yield return new WaitForSeconds(_entityStats.AttackCooldown);
             OnAttack?.Invoke(this);
         }
     }
 
     public void TakeDamage(int value)
     {
-        if (_currentHp <= 0)
+        if (_currentHp <= 0) {
             return;
+        }
 
         _currentHp -= value;
 

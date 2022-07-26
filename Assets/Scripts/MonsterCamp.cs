@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+/*
+-- A type of object that is placed on the path and acts as a monster camp.
+-- Upon entered by the player initializes a battle.
+*/
 [CreateAssetMenu(menuName = "ScriptablesObjects/Objects/Monster Camp")]
 public class MonsterCamp : Object
 {
@@ -12,6 +14,10 @@ public class MonsterCamp : Object
 
     public override void OnEntered()
     {
+        if (Monsters.Length == 0) {
+            return;
+        }
+
         _battleManager = BattleManager.Instance;
         _battleManager.OnBattleEnded += OnBattleEnded;
         _battleManager.StartBattle(Monsters);

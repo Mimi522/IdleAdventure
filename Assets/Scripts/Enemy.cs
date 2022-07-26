@@ -1,4 +1,4 @@
-using UnityEngine;
-
+// Tag class
 public class Enemy : Entity
-{ }
+{
+}
