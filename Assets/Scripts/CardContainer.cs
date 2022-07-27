@@ -12,10 +12,12 @@ public class CardContainer : MonoBehaviour
     public static CardContainer Instance { get; private set; }
 
     public event Action<Card> UpdateText;
+    public event Action<int> UpdateActions;
     public event Action CloseMenu;
 
     [SerializeField] private GameObject _cardInventory;
     [SerializeField] private GameObject _cardInformation;
+    [SerializeField] private GameObject _remainingActions;
     [SerializeField] private int _amountOfCards = 3;
     [SerializeField] private int _maxUses = 2;
 
@@ -74,9 +76,12 @@ public class CardContainer : MonoBehaviour
             _usesRemaining--;
 
             if (_usesRemaining == 0) {
+                _remainingActions.SetActive(false);
                 CloseMenu?.Invoke();
                 return;
             }
+
+            UpdateActions?.Invoke(_usesRemaining);
         }
     }
 
@@ -97,6 +102,8 @@ public class CardContainer : MonoBehaviour
         DisplayCards(_amountOfCards);
 
         _usesRemaining = _maxUses;
+        _remainingActions.SetActive(true);
+        UpdateActions?.Invoke(_usesRemaining);
     }
 
     public void HideUI()
