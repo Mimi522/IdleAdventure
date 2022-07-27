@@ -1,32 +1,34 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Class that displays the possible cards to be used.
 /// </summary>
+[RequireComponent(typeof(CardDeck), typeof(TileSelector))]
 public class CardContainer : MonoBehaviour
 {
     public static CardContainer Instance { get; private set; }
 
     public event Action CloseMenu;
 
-    [SerializeField] private Card _cardTest;
-    [SerializeField] private GameObject _cardHand;
-    public GameObject CardHand {
-        get { return _cardHand; }
-    }
+    [SerializeField] private GameObject _cardInventory;
+    [SerializeField] private int _amountOfCards = 3;
+    [SerializeField] private int _maxUses = 2;
 
     private Card _selectedCard;
+    private CardDeck _cardDeck;
+    private Card[] _cardPrefabs;
+    private List<GameObject> _cardsOnHand;
     private TileSelector _tileSelector;
 
-    void OnEnable()
-    {
-        _cardTest.Clicked += SelectCard;
-    }
+    private int _usesRemaining;
 
-    void OnDisable()
+    void OnValidate()
     {
-        _cardTest.Clicked -= SelectCard;
+        if (_amountOfCards <= 0) {
+            Debug.LogError("Number of cards available can't be less than zero");
+        }
     }
 
     void Awake()
@@ -37,16 +39,10 @@ public class CardContainer : MonoBehaviour
             Instance = this;
         }
 
+        _cardDeck = GetComponent<CardDeck>();
         _tileSelector = GetComponent<TileSelector>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (_selectedCard == null) {
@@ -66,13 +62,47 @@ public class CardContainer : MonoBehaviour
                 return;
             }
 
+            _cardsOnHand.Remove(_selectedCard.gameObject);
+            Destroy(_selectedCard.gameObject);
             _selectedCard = null;
-            CloseMenu?.Invoke();
+
+            _usesRemaining--;
+
+            if (_usesRemaining == 0) {
+                CloseMenu?.Invoke();
+                return;
+            }
         }
     }
 
     public void SelectCard(Card card)
     {
         _selectedCard = card;
+    }
+
+    public void ShowUI()
+    {
+        _cardInventory.SetActive(true);
+
+        _cardsOnHand = new List<GameObject>();
+        _cardPrefabs = _cardDeck.DrawCards(_amountOfCards);
+
+        for (int i = 0; i < _cardPrefabs.Length; i++) {
+            _cardsOnHand.Add(Instantiate(_cardPrefabs[i].gameObject, _cardInventory.transform));
+            _cardsOnHand[i].GetComponent<Card>().Clicked += SelectCard;
+        }
+
+        _usesRemaining = _maxUses;
+    }
+
+    public void HideUI()
+    {
+        foreach (GameObject card in _cardsOnHand) {
+            card.GetComponent<Card>().Clicked -= SelectCard;
+            Destroy(card);
+        }
+
+        _cardsOnHand.Clear();
+        _cardInventory.SetActive(false);
     }
 }

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: 
   Description: 
-  VisualPrefab: {fileID: 0}
+  VisualPrefab: {fileID: 1823006784060127471, guid: cacd3d62e4183554ba7a98d00c123599, type: 3}
   ValidTarget: 1
+  Flat: 5
+  Percentage: 0.7

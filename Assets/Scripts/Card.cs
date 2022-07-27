@@ -15,6 +15,13 @@ public class Card : MonoBehaviour
 
     public event Action<Card> Clicked;
 
+    void OnValidate()
+    {
+        if (_modifier == null) {
+            Debug.LogError("Missing card modifier.");
+        }
+    }
+
     void OnEnable()
     {
         GetComponent<Button>().onClick.AddListener(OnButtonClicked);

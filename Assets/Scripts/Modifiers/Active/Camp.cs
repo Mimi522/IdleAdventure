@@ -19,14 +19,14 @@ public class Camp : TileModifier
         _battleManager.Player.Heal(HealAmount);
 
         _cardContainer = CardContainer.Instance;
-        _cardContainer.CardHand.SetActive(true);
         _cardContainer.CloseMenu += FinishRest;
+        _cardContainer.ShowUI(); ;
     }
 
     private void FinishRest()
     {
+        _cardContainer.HideUI();
         _cardContainer.CloseMenu -= FinishRest;
-        _cardContainer.CardHand.SetActive(false);
         EndEvent();
     }
 }
