@@ -108,8 +108,9 @@ public class GameBoard : MonoBehaviour
             GameObject tile = Instantiate(PathPrefab, tilePosition, Quaternion.identity);
             _boardGrid.SetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y, tile.GetComponent<Tile>());
             tileData = tile.GetComponent<Tile>();
+            tileData.TileType = TileType.Active;
 
-            if (i == 3) {
+            if (i == 1) {
                 tileData.TryApplyModifier(BaseCamp);
             } else if (i == 2) {
                 tileData.TryApplyModifier(MonsterCamp);

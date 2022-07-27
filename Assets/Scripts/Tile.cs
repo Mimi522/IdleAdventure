@@ -13,10 +13,19 @@ public class Tile : MonoBehaviour
         set { _modifierData = value; }
     }
 
+    private TileType _tileType = TileType.Passive;
+    public TileType TileType {
+        set { _tileType = value; }
+    }
+
     // Placing an object in a tile only if the tile is empty
     public bool TryApplyModifier(TileModifier objectPrefab)
     {
         if (_modifierData != null) {
+            return false;
+        }
+
+        if (objectPrefab.ValidTarget != _tileType) {
             return false;
         }
 
