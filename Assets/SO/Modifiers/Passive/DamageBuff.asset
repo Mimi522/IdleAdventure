@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cbc4c3ec69d5b45839af452f3ae45c, type: 3}
   m_Name: DamageBuff
   m_EditorClassIdentifier: 
-  DisplayName: 
-  Description: 
+  DisplayName: Damage buff
+  Description: Gives 70% aditional damage plus a bonus of 5 damage.
   VisualPrefab: {fileID: 1823006784060127471, guid: cacd3d62e4183554ba7a98d00c123599, type: 3}
+  CardVisual: {fileID: 21300000, guid: eb0d04e0306e3304faf58fc7934761ab, type: 3}
   ValidTarget: 1
   Flat: 5
   Percentage: 0.7

@@ -15,4 +15,6 @@ MonoBehaviour:
   DisplayName: 
   Description: 
   VisualPrefab: {fileID: 1823006784060127471, guid: 19c8055be141151479ed1ea8e7d561fb, type: 3}
+  CardVisual: {fileID: 7482667652216324306, guid: 6f90186de3be53946aca25e94836e552, type: 3}
+  ValidTarget: 0
   HealAmount: 100

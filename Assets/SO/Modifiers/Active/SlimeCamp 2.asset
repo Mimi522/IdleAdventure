@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b6b626f8b6ebe49bae8028d8d41fbb, type: 3}
   m_Name: SlimeCamp 2
   m_EditorClassIdentifier: 
-  DisplayName: 
-  Description: 
+  DisplayName: Slime Camp x2
+  Description: Spawns 2 slime on your way.
   VisualPrefab: {fileID: 1823006784060127471, guid: a0532b11d5d761e49ac6246bb3955d2c, type: 3}
+  CardVisual: {fileID: 21300000, guid: 7288d23a59ebbe045ad45f4f4addafba, type: 3}
+  ValidTarget: 0
   Monsters:
   - {fileID: 6758435555555826690, guid: b5a8d1dd94112024b915b48e64da2649, type: 3}
   - {fileID: 6758435555555826690, guid: b5a8d1dd94112024b915b48e64da2649, type: 3}
