@@ -34,6 +34,8 @@ public class Tile : MonoBehaviour
         _modifierData = objectPrefab;
         _modifierVisual = GameObject.Instantiate(objectPrefab.VisualPrefab, objectPosition, Quaternion.identity);
 
+        _modifierData.OnPlaced();
+
         return true;
     }
 }
