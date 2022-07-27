@@ -50,19 +50,19 @@ public partial class BattleManager : MonoBehaviour
         }
     }
 
-    private void PlayerAttack(Entity player)
+    private void PlayerAttack(DamageInfo damageInfo)
     {
         if (_enemies.Count > 0) {
-            _enemies[0].TakeDamage(player.EntityStats.DamageDealt);
-            Debug.Log(string.Format("Player inflicts {0} damage on enemy!", player.EntityStats.DamageDealt));
+            _enemies[0].TakeDamage(damageInfo.Damage);
+            Debug.Log(string.Format("Player inflicts {0} damage on enemy!", damageInfo.Damage));
         }
     }
 
-    private void EnemyAttack(Entity enemyStats)
+    private void EnemyAttack(DamageInfo damageInfo)
     {
         if (_player.CurrentHp > 0) {
-            _player.TakeDamage(enemyStats.EntityStats.DamageDealt);
-            Debug.Log(String.Format("Enemy inflicts {0} damage on player!", enemyStats.EntityStats.DamageDealt));
+            _player.TakeDamage(damageInfo.Damage);
+            Debug.Log(String.Format("Enemy inflicts {0} damage on player!", damageInfo.Damage));
         }
     }
 

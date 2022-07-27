@@ -9,14 +9,11 @@ using UnityEngine.Events;
 [RequireComponent(typeof(EntityStats))]
 public class Entity : MonoBehaviour
 {
-    public event Action<Entity> OnAttack;
+    public event Action<DamageInfo> OnAttack;
     public event Action<Entity> OnDeath;
     public UnityEvent<float> OnHealthChange;
 
     private EntityStats _entityStats;
-    public EntityStats EntityStats {
-        get { return _entityStats; }
-    }
 
     private int _currentHp;
     public int CurrentHp {
@@ -84,7 +81,17 @@ public class Entity : MonoBehaviour
     {
         while (_currentHp > 0) {
             yield return new WaitForSeconds(_entityStats.AttackCooldown);
-            OnAttack?.Invoke(this);
+            OnAttack?.Invoke(DamageInfo.Single(_entityStats.DamageDealt));
         }
+    }
+}
+
+public struct DamageInfo
+{
+    public int Damage;
+
+    public static DamageInfo Single(int damage)
+    {
+        return new DamageInfo { Damage = damage };
     }
 }

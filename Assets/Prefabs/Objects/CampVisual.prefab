@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823006784060127464}
   m_Layer: 0
-  m_Name: BaseCampVisual
+  m_Name: CampVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

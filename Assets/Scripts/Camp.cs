@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptablesObjects/Objects/Base Camp")]
-public class BaseCamp : Object
+public class Camp : Object
 {
     public int HealAmount = 100;
 

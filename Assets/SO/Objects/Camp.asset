@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc49edd16443df446a1e2a315df8938b, type: 3}
-  m_Name: BaseCamp
+  m_Script: {fileID: 11500000, guid: ecf6d97014287d34199f6c05007d901c, type: 3}
+  m_Name: Camp
   m_EditorClassIdentifier: 
   DisplayName: 
   Description: 
