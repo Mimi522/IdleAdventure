@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 14954165}
   - component: {fileID: 14954167}
   - component: {fileID: 14954168}
+  - component: {fileID: 14954169}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -239,7 +240,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f804a7e728a41bf4eb622de78d64d611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardTest: {fileID: 0}
+  _cardTest: {fileID: 1944490874}
+--- !u!114 &14954169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14954163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209e0d62e9549ef4a9affa4382e1fdf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &229339532 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1859604122, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
@@ -704,9 +717,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GrassPrefabsVariant:
-  - {fileID: 8423069778630242682, guid: 73dc55c6aa5126a448cf4db110e74a77, type: 3}
-  - {fileID: 8423069778630242682, guid: ddd729b34bd15984caf45390a3e48ef7, type: 3}
-  PathPrefab: {fileID: 8423069778630242682, guid: 0bda64821e1b7214aa994dc283f05ad6, type: 3}
+  - {fileID: 5029150638113952000, guid: 815e04e9323a6264e8e23067a00e218c, type: 3}
+  - {fileID: 5029150638113952000, guid: 1996dd970fc64db428ecc72d3318f740, type: 3}
+  PathPrefab: {fileID: 5029150638113952000, guid: aa99fdadbd6979643a3e4e61399ea6be, type: 3}
   PawnPrefab: {fileID: 1306510727193889572, guid: b545ab349fd640047946337d670aebed, type: 3}
   BaseCamp: {fileID: 11400000, guid: afa81a70c4bc92345b405c5e71f64e8f, type: 2}
   MonsterCamp: {fileID: 11400000, guid: d2bded6e2d3b5c9478c87ebdb2554ac5, type: 2}
