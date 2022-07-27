@@ -13,19 +13,23 @@ public class Entity : MonoBehaviour
     public event Action<Entity> OnDeath;
     public UnityEvent<float> OnHealthChange;
 
-    private EntityStats _entityStats;
+    protected virtual int Hp { get { return _baseStats.MaxHp; } }
+    protected virtual int Damage { get { return _baseStats.DamageDealt; } }
+    protected virtual int Cooldown { get { return _baseStats.AttackCooldown; } }
 
     private int _currentHp;
     public int CurrentHp {
         get { return _currentHp; }
     }
 
+    protected EntityStats _baseStats;
+
     // The Hp is settle on OnEnbale to make sure the it resets when reusing 
     // the entity
     void OnEnable()
     {
-        _entityStats = GetComponent<EntityStats>();
-        _currentHp = _entityStats.MaxHp;
+        _baseStats = GetComponent<EntityStats>();
+        _currentHp = Hp;
     }
 
     public void Dispose()
@@ -59,7 +63,7 @@ public class Entity : MonoBehaviour
             OnDeath?.Invoke(this);
         }
 
-        OnHealthChange?.Invoke((float)_currentHp / _entityStats.MaxHp);
+        OnHealthChange?.Invoke((float)_currentHp / Hp);
     }
 
     public void Heal(int amount)
@@ -70,18 +74,18 @@ public class Entity : MonoBehaviour
 
         _currentHp += amount;
 
-        if (_currentHp > _entityStats.MaxHp) {
-            _currentHp = _entityStats.MaxHp;
+        if (_currentHp > Hp) {
+            _currentHp = Hp;
         }
 
-        OnHealthChange?.Invoke((float)_currentHp / _entityStats.MaxHp);
+        OnHealthChange?.Invoke((float)_currentHp / Hp);
     }
 
     private IEnumerator Attack()
     {
         while (_currentHp > 0) {
-            yield return new WaitForSeconds(_entityStats.AttackCooldown);
-            OnAttack?.Invoke(DamageInfo.Single(_entityStats.DamageDealt));
+            yield return new WaitForSeconds(Cooldown);
+            OnAttack?.Invoke(DamageInfo.Single(Damage));
         }
     }
 }
