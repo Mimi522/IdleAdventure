@@ -1,9 +1,9 @@
 using System;
 
-/*
--- Class responsible for creating the grid, setting the tiles on their 
--- respective positions and storing them.
-*/
+/// <summary>
+/// Class responsible for creating the grid, setting the tiles on their 
+/// respective positions and storing them.
+/// </summary>
 public class TileGrid
 {
     private int _rows;

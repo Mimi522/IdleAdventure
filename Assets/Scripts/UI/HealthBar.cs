@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/*
--- Class responsible for updating the UI of an entity.
-*/
+/// <summary>
+/// Class responsible for updating the UI of an entity.
+/// </summary>
 [RequireComponent(typeof(Image))]
 public class HealthBar : MonoBehaviour
 {

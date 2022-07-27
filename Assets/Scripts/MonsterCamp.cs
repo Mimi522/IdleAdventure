@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/*
--- A type of object that is placed on the path and acts as a monster camp.
--- Upon entered by the player initializes a battle.
-*/
+/// <summary>
+/// A type of object that is placed on the path and acts as a monster camp.
+/// Upon entered by the player initializes a battle.
+/// </summary>
 [CreateAssetMenu(menuName = "ScriptablesObjects/Objects/Monster Camp")]
 public class MonsterCamp : Object
 {

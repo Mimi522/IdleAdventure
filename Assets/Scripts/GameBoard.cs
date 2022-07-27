@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
--- Class that creates the game board and manages the player pawn movement
--- throught it.
-*/
+/// <summary>
+/// Class that creates the game board and manages the player pawn movement
+/// throught it.
+/// </summary>
 public class GameBoard : MonoBehaviour
 {
     public GameObject[] GrassPrefabsVariant;

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/*
--- Class containing base data refering to an entity in game being that
--- a player or monster.
-*/
+/// <summary>
+/// Class containing base data refering to an entity in game being that
+/// a player or monster.
+/// </summary>
 public class EntityStats : MonoBehaviour
 {
     [SerializeField] private int _maxHp;

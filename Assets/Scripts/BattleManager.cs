@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-/*
--- Class that controls the battle between player and monster in a monster
--- camp tile.
-*/
+/// <summary>
+/// Class that controls the battle between player and monster in a monster
+/// camp tile.
+/// </summary>
 public partial class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; private set; }

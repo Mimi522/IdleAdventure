@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-/*
--- Class responsible for handling the state of an entity.
-*/
+/// <summary>
+/// Class responsible for handling the state of an entity.
+/// </summary>
 [RequireComponent(typeof(EntityStats))]
 public class Entity : MonoBehaviour
 {
@@ -83,15 +83,5 @@ public class Entity : MonoBehaviour
             yield return new WaitForSeconds(_entityStats.AttackCooldown);
             OnAttack?.Invoke(DamageInfo.Single(_entityStats.DamageDealt));
         }
-    }
-}
-
-public struct DamageInfo
-{
-    public int Damage;
-
-    public static DamageInfo Single(int damage)
-    {
-        return new DamageInfo { Damage = damage };
     }
 }

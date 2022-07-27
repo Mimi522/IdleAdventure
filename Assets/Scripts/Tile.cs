@@ -1,9 +1,9 @@
 using UnityEngine;
 
-/* 
--- Class representing a tile in the grid containing the visual, for both
--- tile appearance and object on it, and the object's data.
-*/
+/// <summary>
+/// Class representing a tile in the grid containing the visual, for both
+/// tile appearance and object on it, and the object's data.
+/// </summary>
 public class Tile
 {
     // GameObject representing the tile
