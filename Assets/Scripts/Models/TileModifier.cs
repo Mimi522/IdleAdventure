@@ -1,5 +1,5 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 /// <summary>
 /// Scriptable object representing an object that can be placed in a tile.
@@ -13,6 +13,7 @@ public class TileModifier : ScriptableObject
     [TextArea] public string Description;
 
     public GameObject VisualPrefab;
+    public Sprite CardVisual;
 
     public TileType ValidTarget;
 
