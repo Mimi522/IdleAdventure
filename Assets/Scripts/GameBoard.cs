@@ -59,7 +59,7 @@ public class GameBoard : MonoBehaviour
     private void Move()
     {
         _walking = true;
-        TargetTile.ObjectData.OnEventEnded -= Move;
+        TargetTile.ModifierData.OnEventEnded -= Move;
         SetTargetForPlayer();
     }
 
@@ -72,7 +72,7 @@ public class GameBoard : MonoBehaviour
         _playerPawn.transform.position = Vector3.MoveTowards(_playerPawn.transform.position, _newPosition, _playerSpeed * Time.deltaTime);
         _playerPawn.transform.LookAt(_newPosition);
         if ((_newPosition - _playerPawn.transform.position).magnitude <= 0.02f) {
-            if (TargetTile.ObjectData != null) {
+            if (TargetTile.ModifierData != null) {
                 CallEvent();
                 return;
             }
@@ -89,9 +89,10 @@ public class GameBoard : MonoBehaviour
 
                 Vector3 tilePosition = new Vector3(_spacing * j, 0, _spacing * i);
 
-                Tile tile = new Tile(GrassPrefabsVariant[grassVariant], tilePosition);
+                //Tile tile = new Tile(GrassPrefabsVariant[grassVariant], tilePosition);
+                GameObject tile = Instantiate(GrassPrefabsVariant[grassVariant], tilePosition, Quaternion.identity);
 
-                _boardGrid.SetTile(i, j, tile);
+                _boardGrid.SetTile(i, j, tile.GetComponent<Tile>());
             }
         }
     }
@@ -100,17 +101,22 @@ public class GameBoard : MonoBehaviour
     {
         for (int i = 0; i < _pathPositions.Count; i++) {
             // Invert those on inspector eventually
-            Tile tile = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
-            tile.UpdateTile(PathPrefab);
+            Tile tileData = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
+            //tileData.UpdateTile(PathPrefab);
+            Vector3 tilePosition = tileData.transform.position;
+            Destroy(tileData.gameObject);
+            GameObject tile = Instantiate(PathPrefab, tilePosition, Quaternion.identity);
+            _boardGrid.SetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y, tile.GetComponent<Tile>());
+            tileData = tile.GetComponent<Tile>();
 
             if (i == 3) {
-                tile.HoldObject(BaseCamp);
+                tileData.TryApplyModifier(BaseCamp);
             } else if (i == 2) {
-                tile.HoldObject(MonsterCamp);
+                tileData.TryApplyModifier(MonsterCamp);
             } else if (i == 7) {
-                tile.HoldObject(MonsterCamp2);
+                tileData.TryApplyModifier(MonsterCamp2);
             } else if (i == 13) {
-                tile.HoldObject(BossCamp);
+                tileData.TryApplyModifier(BossCamp);
             }
         }
     }
@@ -118,7 +124,7 @@ public class GameBoard : MonoBehaviour
     private void InstantiatePlayer()
     {
         Tile tile = _boardGrid.GetTile((int)_startPosition.x, (int)_startPosition.y);
-        Vector3 tilePosition = tile.TileVisual.transform.position;
+        Vector3 tilePosition = tile.transform.position;
 
         Vector3 playerPosition = tilePosition;
 
@@ -132,7 +138,7 @@ public class GameBoard : MonoBehaviour
         if (_pathIndex == _pathPositions.Count)
             _pathIndex = 0;
 
-        Vector3 tilePosition = TargetTile.TileVisual.transform.position;
+        Vector3 tilePosition = TargetTile.transform.position;
 
         _newPosition = tilePosition;
     }
@@ -142,7 +148,7 @@ public class GameBoard : MonoBehaviour
         _walking = false;
         Tile tile = TargetTile;
 
-        tile.ObjectData.OnEventEnded += Move;
-        tile.ObjectData.OnEntered();
+        tile.ModifierData.OnEventEnded += Move;
+        tile.ModifierData.OnEntered();
     }
 }

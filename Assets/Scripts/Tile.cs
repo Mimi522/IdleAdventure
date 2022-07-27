@@ -4,24 +4,25 @@ using UnityEngine;
 /// Class representing a tile in the grid containing the visual, for both
 /// tile appearance and object on it, and the object's data.
 /// </summary>
-public class Tile
+public class Tile : MonoBehaviour
 {
     // GameObject representing the tile
-    private GameObject _tileVisual;
+    /*private GameObject _tileVisual;
     public GameObject TileVisual {
         get { return _tileVisual; }
-    }
+    }*/
 
     // GameObject over the tile representing the object on it
     private GameObject _objectVisual;
 
     // Object information and actions
-    private TileModifier _objectData;
-    public TileModifier ObjectData {
-        get { return _objectData; }
-        set { _objectData = value; }
+    private TileModifier _modifierData;
+    public TileModifier ModifierData {
+        get { return _modifierData; }
+        set { _modifierData = value; }
     }
 
+    /*
     public Tile(GameObject tilePrefab, Vector3 visualPosition)
     {
         _tileVisual = GameObject.Instantiate(tilePrefab, visualPosition, Quaternion.identity);
@@ -34,17 +35,17 @@ public class Tile
         GameObject.Destroy(_tileVisual);
         _tileVisual = GameObject.Instantiate(tilePrefab, tilePosition, Quaternion.identity);
     }
-
+    */
     // Placing an object in a tile only if the tile is empty
-    public bool HoldObject(TileModifier objectPrefab)
+    public bool TryApplyModifier(TileModifier objectPrefab)
     {
-        if (_objectData != null) {
+        if (_modifierData != null) {
             return false;
         }
 
-        Vector3 objectPosition = _tileVisual.transform.position;
+        Vector3 objectPosition = transform.position;
 
-        _objectData = objectPrefab;
+        _modifierData = objectPrefab;
         _objectVisual = GameObject.Instantiate(objectPrefab.VisualPrefab, objectPosition, Quaternion.identity);
 
         return true;
