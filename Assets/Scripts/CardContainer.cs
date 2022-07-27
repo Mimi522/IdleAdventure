@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Class that displays the possible cards to be used.
@@ -10,9 +12,11 @@ public class CardContainer : MonoBehaviour
 {
     public static CardContainer Instance { get; private set; }
 
+    public event Action<Card> UpdateText;
     public event Action CloseMenu;
 
     [SerializeField] private GameObject _cardInventory;
+    [SerializeField] private GameObject _cardInformation;
     [SerializeField] private int _amountOfCards = 3;
     [SerializeField] private int _maxUses = 2;
 
@@ -62,6 +66,7 @@ public class CardContainer : MonoBehaviour
                 return;
             }
 
+            _cardInformation.SetActive(false);
             _cardsOnHand.Remove(_selectedCard.gameObject);
             Destroy(_selectedCard.gameObject);
             _selectedCard = null;
@@ -79,6 +84,9 @@ public class CardContainer : MonoBehaviour
     public void SelectCard(Card card)
     {
         _selectedCard = card;
+
+        _cardInformation.SetActive(true);
+        UpdateText?.Invoke(card);
     }
 
     public void ShowUI()
@@ -109,6 +117,7 @@ public class CardContainer : MonoBehaviour
 
         for (int i = 0; i < _cardPrefabs.Length; i++) {
             GameObject cardVisual = Instantiate(_cardPrefabs[i].gameObject, _cardInventory.transform);
+            cardVisual.GetComponent<Image>().sprite = _cardPrefabs[i].Modifier.CardVisual;
             cardVisual.GetComponent<Card>().Clicked += SelectCard;
             _cardsOnHand.Add(cardVisual);
         }
