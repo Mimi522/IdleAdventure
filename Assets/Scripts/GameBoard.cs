@@ -10,6 +10,8 @@ public class GameBoard : MonoBehaviour
     public GameObject[] GrassPrefabsVariant;
     public GameObject PathPrefab;
     public GameObject PawnPrefab;
+
+    public Object BaseCamp;
     public Object MonsterCamp;
     public Object MonsterCamp2;
     public Object BossCamp;
@@ -101,7 +103,9 @@ public class GameBoard : MonoBehaviour
             Tile tile = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
             tile.UpdateTile(PathPrefab);
 
-            if (i == 2) {
+            if (i == 3) {
+                tile.HoldObject(BaseCamp);
+            } else if (i == 2) {
                 tile.HoldObject(MonsterCamp);
             } else if (i == 7) {
                 tile.HoldObject(MonsterCamp2);

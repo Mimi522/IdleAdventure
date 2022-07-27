@@ -28,7 +28,7 @@ public class Entity : MonoBehaviour
     void OnEnable()
     {
         _entityStats = GetComponent<EntityStats>();
-        _currentHp = _entityStats.Hp;
+        _currentHp = _entityStats.MaxHp;
     }
 
     public void Dispose()
@@ -48,21 +48,13 @@ public class Entity : MonoBehaviour
         StopCoroutine(Attack());
     }
 
-    private IEnumerator Attack()
-    {
-        while (_currentHp > 0) {
-            yield return new WaitForSeconds(_entityStats.AttackCooldown);
-            OnAttack?.Invoke(this);
-        }
-    }
-
-    public void TakeDamage(int value)
+    public void TakeDamage(int amount)
     {
         if (_currentHp <= 0) {
             return;
         }
 
-        _currentHp -= value;
+        _currentHp -= amount;
 
         if (_currentHp <= 0) {
             _currentHp = 0;
@@ -70,6 +62,29 @@ public class Entity : MonoBehaviour
             OnDeath?.Invoke(this);
         }
 
-        OnHealthChange?.Invoke((float)_currentHp / _entityStats.Hp);
+        OnHealthChange?.Invoke((float)_currentHp / _entityStats.MaxHp);
+    }
+
+    public void Heal(int amount)
+    {
+        if (_currentHp <= 0) {
+            return;
+        }
+
+        _currentHp += amount;
+
+        if (_currentHp > _entityStats.MaxHp) {
+            _currentHp = _entityStats.MaxHp;
+        }
+
+        OnHealthChange?.Invoke((float)_currentHp / _entityStats.MaxHp);
+    }
+
+    private IEnumerator Attack()
+    {
+        while (_currentHp > 0) {
+            yield return new WaitForSeconds(_entityStats.AttackCooldown);
+            OnAttack?.Invoke(this);
+        }
     }
 }
