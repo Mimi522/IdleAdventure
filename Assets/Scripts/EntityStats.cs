@@ -6,9 +6,9 @@ using UnityEngine;
 */
 public class EntityStats : MonoBehaviour
 {
-    [SerializeField] private int _hp;
-    public int Hp {
-        get { return _hp; }
+    [SerializeField] private int _maxHp;
+    public int MaxHp {
+        get { return _maxHp; }
     }
 
     [SerializeField] private int _damageDealt;
@@ -19,5 +19,23 @@ public class EntityStats : MonoBehaviour
     [SerializeField] private int _attackCooldown;
     public int AttackCooldown {
         get { return _attackCooldown; }
+    }
+
+    void OnValidate()
+    {
+        if (_maxHp <= 0) {
+            Debug.LogError("Max hp can't be lower or equal to zero.");
+            _maxHp = 1;
+        }
+
+        if (_damageDealt < 0) {
+            Debug.LogError("Damage can't be negative. Don't heal your enemies!");
+            _damageDealt = 0;
+        }
+
+        if (_attackCooldown <= 0) {
+            Debug.LogError("Attack cooldown can't be lower or equal to zero.");
+            _attackCooldown = 1;
+        }
     }
 }
