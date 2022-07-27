@@ -65,6 +65,7 @@ public class CardContainer : MonoBehaviour
             _cardsOnHand.Remove(_selectedCard.gameObject);
             Destroy(_selectedCard.gameObject);
             _selectedCard = null;
+            DisplayCards(1);
 
             _usesRemaining--;
 
@@ -85,12 +86,8 @@ public class CardContainer : MonoBehaviour
         _cardInventory.SetActive(true);
 
         _cardsOnHand = new List<GameObject>();
-        _cardPrefabs = _cardDeck.DrawCards(_amountOfCards);
 
-        for (int i = 0; i < _cardPrefabs.Length; i++) {
-            _cardsOnHand.Add(Instantiate(_cardPrefabs[i].gameObject, _cardInventory.transform));
-            _cardsOnHand[i].GetComponent<Card>().Clicked += SelectCard;
-        }
+        DisplayCards(_amountOfCards);
 
         _usesRemaining = _maxUses;
     }
@@ -104,5 +101,16 @@ public class CardContainer : MonoBehaviour
 
         _cardsOnHand.Clear();
         _cardInventory.SetActive(false);
+    }
+
+    private void DisplayCards(int amount)
+    {
+        _cardPrefabs = _cardDeck.DrawCards(amount);
+
+        for (int i = 0; i < _cardPrefabs.Length; i++) {
+            GameObject cardVisual = Instantiate(_cardPrefabs[i].gameObject, _cardInventory.transform);
+            cardVisual.GetComponent<Card>().Clicked += SelectCard;
+            _cardsOnHand.Add(cardVisual);
+        }
     }
 }
