@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerBuff : TileModifier
 {
     public int Flat;
-    public int Percentage;
+    public float Percentage;
 
     private BattleManager _battleManager;
 
