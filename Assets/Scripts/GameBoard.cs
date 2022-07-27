@@ -11,10 +11,10 @@ public class GameBoard : MonoBehaviour
     public GameObject PathPrefab;
     public GameObject PawnPrefab;
 
-    public Object BaseCamp;
-    public Object MonsterCamp;
-    public Object MonsterCamp2;
-    public Object BossCamp;
+    public TileModifier BaseCamp;
+    public TileModifier MonsterCamp;
+    public TileModifier MonsterCamp2;
+    public TileModifier BossCamp;
 
     private GameObject _playerPawn;
 

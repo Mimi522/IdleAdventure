@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,7 +6,7 @@ using UnityEngine;
 /// Upon entered by the player heals for a determined amount.
 /// </summary>
 [CreateAssetMenu(menuName = "ScriptablesObjects/Objects/Base Camp")]
-public class Camp : Object
+public class Camp : TileModifier
 {
     public int HealAmount = 100;
 

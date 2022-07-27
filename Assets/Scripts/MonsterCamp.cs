@@ -5,7 +5,7 @@ using UnityEngine;
 /// Upon entered by the player initializes a battle.
 /// </summary>
 [CreateAssetMenu(menuName = "ScriptablesObjects/Objects/Monster Camp")]
-public class MonsterCamp : Object
+public class MonsterCamp : TileModifier
 {
     public GameObject[] Monsters;
 

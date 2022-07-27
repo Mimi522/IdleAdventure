@@ -2,11 +2,11 @@ using UnityEngine;
 using System;
 
 /// <summary>
-/// Scriptable object representing and object that can be placed in a tile.
+/// Scriptable object representing an object that can be placed in a tile.
 /// Objects can affect the game upon their placing or when the tile they are
 /// placed in is entered by the player.
 /// </summary>
-public class Object : ScriptableObject
+public class TileModifier : ScriptableObject
 {
     public string DisplayName;
 

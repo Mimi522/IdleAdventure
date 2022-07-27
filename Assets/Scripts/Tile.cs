@@ -16,8 +16,8 @@ public class Tile
     private GameObject _objectVisual;
 
     // Object information and actions
-    private Object _objectData;
-    public Object ObjectData {
+    private TileModifier _objectData;
+    public TileModifier ObjectData {
         get { return _objectData; }
         set { _objectData = value; }
     }
@@ -36,7 +36,7 @@ public class Tile
     }
 
     // Placing an object in a tile only if the tile is empty
-    public bool HoldObject(Object objectPrefab)
+    public bool HoldObject(TileModifier objectPrefab)
     {
         if (_objectData != null) {
             return false;
