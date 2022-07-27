@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
 
     protected virtual int Hp { get { return _baseStats.MaxHp; } }
     protected virtual int Damage { get { return _baseStats.DamageDealt; } }
-    protected virtual int Cooldown { get { return _baseStats.AttackCooldown; } }
+    protected virtual float Cooldown { get { return _baseStats.AttackCooldown; } }
 
     private int _currentHp;
     public int CurrentHp {

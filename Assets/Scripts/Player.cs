@@ -11,7 +11,7 @@ public class Player : Entity
 
     protected override int Hp => ComputeStat(_baseStats.MaxHp, HpBonus);
     protected override int Damage => ComputeStat(_baseStats.DamageDealt, DamageDealtBonus);
-    protected override int Cooldown => ComputeStat(_baseStats.AttackCooldown, AttackCooldownBonus);
+    protected override float Cooldown => ComputeCooldown(_baseStats.AttackCooldown, AttackCooldownBonus);
 
     private int ComputeStat(int baseStat, StatBonus bonus)
     {
@@ -19,5 +19,13 @@ public class Player : Entity
         newValue += bonus.Flat;
 
         return Mathf.FloorToInt(newValue);
+    }
+
+    private float ComputeCooldown(float baseCooldown, StatBonus bonus)
+    {
+        float newValue = baseCooldown - baseCooldown * bonus.Percentage;
+        newValue -= bonus.Flat;
+
+        return newValue;
     }
 }
