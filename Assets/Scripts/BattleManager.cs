@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -91,9 +92,7 @@ public partial class BattleManager : MonoBehaviour
         _enemies.RemoveAt(0);
 
         if (_enemies.Count == 0) {
-            OnBattleEnded?.Invoke();
-            Debug.Log("Battle ended!");
-            _arena.SetActive(false);
+            StartCoroutine(EndBattleWithDelay(2));
         }
     }
 
@@ -101,5 +100,14 @@ public partial class BattleManager : MonoBehaviour
     {
         player.Dispose();
         Debug.Log("GAME OVER");
+    }
+
+    private IEnumerator EndBattleWithDelay(int delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        OnBattleEnded?.Invoke();
+        Debug.Log("Battle ended!");
+        _arena.SetActive(false);
     }
 }
