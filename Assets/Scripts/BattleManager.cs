@@ -16,8 +16,8 @@ public partial class BattleManager : MonoBehaviour
 
     [SerializeField] private GameObject _arena;
 
-    [SerializeField] private Entity _player;
-    public Entity Player {
+    [SerializeField] private Player _player;
+    public Player Player {
         get { return _player; }
     }
 
