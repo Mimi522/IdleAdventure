@@ -14,6 +14,8 @@ public class TileModifier : ScriptableObject
 
     public GameObject VisualPrefab;
 
+    public TileType ValidTarget;
+
     public event Action OnEventEnded;
 
     public virtual void OnPlaced() { }
