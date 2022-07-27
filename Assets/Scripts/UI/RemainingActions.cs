@@ -37,6 +37,6 @@ public class RemainingActions : MonoBehaviour
 
     public void UpdateRemainingActions(int amount)
     {
-        _textCamp.text = $"Please use {amount} cards";
+        _textCamp.text = $"Please use {amount} card{(amount > 1 ? "s" : "")}";
     }
 }
