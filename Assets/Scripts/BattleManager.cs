@@ -19,6 +19,8 @@ public partial class BattleManager : MonoBehaviour
     [SerializeField] private GameObject _arena;
     [SerializeField] private GameObject _gameOverUI;
 
+    [SerializeField] private float _delayAfterBattle = 2;
+
     [SerializeField] private Player _player;
     public Player Player {
         get { return _player; }
@@ -96,7 +98,7 @@ public partial class BattleManager : MonoBehaviour
         _enemies.RemoveAt(0);
 
         if (_enemies.Count == 0) {
-            StartCoroutine(EndBattleWithDelay(2));
+            StartCoroutine(EndBattleWithDelay(_delayAfterBattle));
         }
     }
 
@@ -104,10 +106,11 @@ public partial class BattleManager : MonoBehaviour
     {
         player.Dispose();
         _gameOverUI.SetActive(true);
+        OnPlayerDeath?.Invoke();
         Debug.Log("GAME OVER");
     }
 
-    private IEnumerator EndBattleWithDelay(int delay)
+    private IEnumerator EndBattleWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
