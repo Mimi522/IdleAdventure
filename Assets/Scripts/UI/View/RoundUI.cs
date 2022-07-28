@@ -1,9 +1,16 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Class responsible for updating the game round counter UI. 
+/// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class RoundUI : MonoBehaviour
 {
+    // Null reference error when trying to save it on variable after 
+    // getcomponent call
+    [SerializeField] private TextMeshProUGUI _textDisplay;
+
     void OnEnable()
     {
         RoundCounter.Instance.RoundCountChange += UpdateText;
@@ -16,6 +23,6 @@ public class RoundUI : MonoBehaviour
 
     private void UpdateText(int amount)
     {
-        GetComponent<TextMeshProUGUI>().text = $"Round {amount}/10";
+        _textDisplay.text = $"Round {amount}/10";
     }
 }

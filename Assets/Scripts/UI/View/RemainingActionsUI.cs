@@ -2,11 +2,15 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// UI text displaying the amount of actions remaining.
+/// Class responsible for updating the remaining actions UI. 
 /// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class RemainingActionsUI : MonoBehaviour
 {
+    // Null reference error when trying to save it on variable after 
+    // getcomponent call
+    [SerializeField] private TextMeshProUGUI _textDisplay;
+
     void OnEnable()
     {
         CardContainer.Instance.UpdateActions += UpdateText;
@@ -19,6 +23,6 @@ public class RemainingActionsUI : MonoBehaviour
 
     private void UpdateText(int amount)
     {
-        GetComponentInChildren<TextMeshProUGUI>().text = $"Please use {amount} card{(amount > 1 ? "s" : "")}";
+        _textDisplay.text = $"Please use {amount} card{(amount > 1 ? "s" : "")}";
     }
 }
