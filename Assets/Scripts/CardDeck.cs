@@ -12,6 +12,12 @@ public class CardDeck : MonoBehaviour
         if (Cards.Length == 0) {
             Debug.LogError("Deck has no cards.");
         }
+
+        for (int i = 0; i < Cards.Length; i++) {
+            if (Cards[i] == null) {
+                Debug.LogError($"Card {i} not set.");
+            }
+        }
     }
 
     public Card[] DrawCards(int amount)
