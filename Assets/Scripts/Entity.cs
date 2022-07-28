@@ -24,11 +24,15 @@ public class Entity : MonoBehaviour
 
     protected EntityStats _baseStats;
 
+    void OnAwake()
+    {
+        _baseStats = GetComponent<EntityStats>();
+    }
+
     // The Hp is settle on OnEnbale to make sure the it resets when reusing 
     // the entity
     void OnEnable()
     {
-        _baseStats = GetComponent<EntityStats>();
         _currentHp = Hp;
     }
 
