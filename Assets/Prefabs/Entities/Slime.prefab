@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 25
-  _damageDealt: 3
+  _damageDealt: 300
   _attackCooldown: 4
 --- !u!114 &7255178672672459230
 MonoBehaviour:
