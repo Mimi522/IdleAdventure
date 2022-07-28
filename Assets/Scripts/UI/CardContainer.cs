@@ -46,6 +46,8 @@ public class CardContainer : MonoBehaviour
 
         _cardDeck = GetComponent<CardDeck>();
         _tileSelector = GetComponent<TileSelector>();
+
+        WaveCounter.Instance.WinAchieved += HideUI;
     }
 
     void Update()
@@ -115,6 +117,9 @@ public class CardContainer : MonoBehaviour
 
         _cardsOnHand.Clear();
         _cardInventory.SetActive(false);
+        _remainingActions.SetActive(false);
+
+        WaveCounter.Instance.WinAchieved -= HideUI;
     }
 
     private void DisplayCards(int amount)

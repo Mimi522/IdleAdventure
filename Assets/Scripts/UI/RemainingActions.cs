@@ -6,8 +6,6 @@ using UnityEngine;
 /// </summary>
 public class RemainingActions : MonoBehaviour
 {
-    private CardContainer _cardContainer;
-
     private TextMeshProUGUI _textCamp;
 
     void OnValidate()
@@ -22,17 +20,16 @@ public class RemainingActions : MonoBehaviour
     void Awake()
     {
         _textCamp = GetComponentInChildren<TextMeshProUGUI>();
-        _cardContainer = CardContainer.Instance;
     }
 
     void OnEnable()
     {
-        _cardContainer.UpdateActions += UpdateRemainingActions;
+        CardContainer.Instance.UpdateActions += UpdateRemainingActions;
     }
 
     void OnDisable()
     {
-        _cardContainer.UpdateActions -= UpdateRemainingActions;
+        CardContainer.Instance.UpdateActions -= UpdateRemainingActions;
     }
 
     public void UpdateRemainingActions(int amount)

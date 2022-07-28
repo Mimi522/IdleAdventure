@@ -6,8 +6,6 @@ using UnityEngine;
 /// </summary>
 public class CardInformation : MonoBehaviour
 {
-    private CardContainer _cardContainer;
-
     private TextMeshProUGUI _textCamp;
 
     void OnValidate()
@@ -22,17 +20,16 @@ public class CardInformation : MonoBehaviour
     void Awake()
     {
         _textCamp = GetComponentInChildren<TextMeshProUGUI>();
-        _cardContainer = CardContainer.Instance;
     }
 
     void OnEnable()
     {
-        _cardContainer.UpdateText += UpdateCardInformation;
+        CardContainer.Instance.UpdateText += UpdateCardInformation;
     }
 
     void OnDisable()
     {
-        _cardContainer.UpdateText -= UpdateCardInformation;
+        CardContainer.Instance.UpdateText -= UpdateCardInformation;
     }
 
     public void UpdateCardInformation(Card cardSelected)

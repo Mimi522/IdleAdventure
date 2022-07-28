@@ -26,6 +26,8 @@ public class GameBoard : MonoBehaviour
 
     [SerializeField] private List<Vector2> _pathPositions;
 
+    [SerializeField] private GameObject _winUI;
+
     private Vector3 _newPosition;
 
     private Vector2 _startPosition;
@@ -48,19 +50,15 @@ public class GameBoard : MonoBehaviour
         _startPosition = _pathPositions[0];
         InstantiatePlayer();
         SetTargetForPlayer();
+
+        WaveCounter.Instance.WinAchieved += WinGame;
+        BattleManager.Instance.OnPlayerDeath += StopGame;
     }
 
     // Start is called before the first frame update
     void Start()
     {
 
-    }
-
-    private void Move()
-    {
-        _walking = true;
-        TargetTile.ModifierData.OnEventEnded -= Move;
-        SetTargetForPlayer();
     }
 
     // Update is called once per frame
@@ -110,9 +108,9 @@ public class GameBoard : MonoBehaviour
             tileData = tile.GetComponent<Tile>();
             tileData.TileType = TileType.Active;
 
-            if (i == 1) {
+            if (i == 2) {
                 tileData.TryApplyModifier(BaseCamp);
-            } else if (i == 2) {
+            } else if (i == 4) {
                 tileData.TryApplyModifier(MonsterCamp);
             } else if (i == 7) {
                 tileData.TryApplyModifier(MonsterCamp2);
@@ -151,5 +149,23 @@ public class GameBoard : MonoBehaviour
 
         tile.ModifierData.OnEventEnded += Move;
         tile.ModifierData.OnEntered();
+    }
+
+    private void Move()
+    {
+        _walking = true;
+        TargetTile.ModifierData.OnEventEnded -= Move;
+        SetTargetForPlayer();
+    }
+
+    private void StopGame()
+    {
+        _walking = false;
+    }
+
+    private void WinGame()
+    {
+        _walking = false;
+        _winUI.SetActive(true);
     }
 }

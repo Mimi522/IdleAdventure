@@ -10,27 +10,20 @@ public class Camp : TileModifier
 {
     public int HealAmount = 100;
 
-    private BattleManager _battleManager;
-    private CardContainer _cardContainer;
-    private WaveCounter _waveCounter;
-
     public override void OnEntered()
     {
-        _battleManager = BattleManager.Instance;
-        _battleManager.Player.Heal(HealAmount);
+        BattleManager.Instance.Player.Heal(HealAmount);
 
-        _cardContainer = CardContainer.Instance;
-        _cardContainer.CloseMenu += FinishRest;
-        _cardContainer.ShowUI(); ;
+        CardContainer.Instance.CloseMenu += FinishRest;
+        CardContainer.Instance.ShowUI();
+
+        WaveCounter.Instance.IncrementWave();
     }
 
     private void FinishRest()
     {
-        _cardContainer.HideUI();
-        _cardContainer.CloseMenu -= FinishRest;
-
-        _waveCounter = WaveCounter.Instance;
-        _waveCounter.IncrementWave();
+        CardContainer.Instance.HideUI();
+        CardContainer.Instance.CloseMenu -= FinishRest;
 
         EndEvent();
     }

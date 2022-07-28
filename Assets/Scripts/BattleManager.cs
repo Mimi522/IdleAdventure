@@ -12,6 +12,7 @@ public partial class BattleManager : MonoBehaviour
     public static BattleManager Instance { get; private set; }
 
     public event Action OnBattleEnded;
+    public event Action OnPlayerDeath;
 
     public SpawnLocationProvider[] SpawnPositions;
 

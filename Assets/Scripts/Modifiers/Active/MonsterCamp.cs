@@ -9,22 +9,19 @@ public class MonsterCamp : TileModifier
 {
     public GameObject[] Monsters;
 
-    private BattleManager _battleManager;
-
     public override void OnEntered()
     {
         if (Monsters.Length == 0) {
             return;
         }
 
-        _battleManager = BattleManager.Instance;
-        _battleManager.OnBattleEnded += OnBattleEnded;
-        _battleManager.StartBattle(Monsters);
+        BattleManager.Instance.OnBattleEnded += OnBattleEnded;
+        BattleManager.Instance.StartBattle(Monsters);
     }
 
     private void OnBattleEnded()
     {
-        _battleManager.OnBattleEnded -= OnBattleEnded;
+        BattleManager.Instance.OnBattleEnded -= OnBattleEnded;
         EndEvent();
     }
 }

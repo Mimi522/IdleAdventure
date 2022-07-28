@@ -8,12 +8,9 @@ public class PlayerBuff : TileModifier
     public int Flat;
     public float Percentage;
 
-    private BattleManager _battleManager;
-
     public override void OnPlaced()
     {
-        _battleManager = BattleManager.Instance;
-        _battleManager.Player.DamageDealtBonus.Percentage += Percentage;
-        _battleManager.Player.DamageDealtBonus.Flat += Flat;
+        BattleManager.Instance.Player.DamageDealtBonus.Percentage += Percentage;
+        BattleManager.Instance.Player.DamageDealtBonus.Flat += Flat;
     }
 }

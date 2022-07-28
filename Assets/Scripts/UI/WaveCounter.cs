@@ -1,9 +1,12 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class WaveCounter : MonoBehaviour
 {
     public static WaveCounter Instance { get; private set; }
+
+    public event Action WinAchieved;
 
     [SerializeField] private GameObject _countDisplay;
     [SerializeField] private GameObject _textDisplay;
@@ -23,5 +26,9 @@ public class WaveCounter : MonoBehaviour
     {
         _waveCount++;
         _textDisplay.GetComponent<TextMeshProUGUI>().text = $"Wave {_waveCount}/10";
+
+        if (_waveCount == 10) {
+            WinAchieved?.Invoke();
+        }
     }
 }
