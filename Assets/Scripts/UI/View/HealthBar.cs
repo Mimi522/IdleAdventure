@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Class responsible for updating the UI of an entity.
+/// Class responsible for updating the UI of an entity's health bar.
 /// </summary>
 [RequireComponent(typeof(Image))]
 public class HealthBar : MonoBehaviour
