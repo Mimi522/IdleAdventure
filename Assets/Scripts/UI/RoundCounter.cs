@@ -9,12 +9,12 @@ public class RoundCounter : MonoBehaviour
 {
     public static RoundCounter Instance { get; private set; }
 
-    public event Action WinAchieved;
-    public UnityEvent<int> OnFinishingRound;
-
     [SerializeField] private GameObject _countDisplay;
 
     [SerializeField] private int _maxRounds = 10;
+
+    public event Action WinAchieved;
+    public UnityEvent<int> OnFinishingRound;
 
     private int _roundCount = 1;
 
