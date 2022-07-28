@@ -50,15 +50,13 @@ public class GameBoard : MonoBehaviour
         _startPosition = _pathPositions[0];
         InstantiatePlayer();
         SetTargetForPlayer();
-
-        RoundCounter.Instance.WinAchieved += WinGame;
-        BattleManager.Instance.OnPlayerDeath += LoseGame;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        RoundCounter.Instance.WinAchieved += WinGame;
+        BattleManager.Instance.OnPlayerDeath += LoseGame;
     }
 
     // Update is called once per frame
@@ -161,15 +159,17 @@ public class GameBoard : MonoBehaviour
     private void LoseGame()
     {
         _walking = false;
+        RoundCounter.Instance.WinAchieved -= WinGame;
         BattleManager.Instance.OnPlayerDeath -= LoseGame;
     }
 
     private void WinGame()
     {
         _walking = false;
-        _winUI.SetActive(true);
 
-        RoundCounter.Instance.ShowUI(true);
         RoundCounter.Instance.WinAchieved -= WinGame;
+        BattleManager.Instance.OnPlayerDeath -= LoseGame;
+
+        _winUI.SetActive(true);
     }
 }

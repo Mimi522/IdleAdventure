@@ -7,9 +7,9 @@ public class RoundCounter : MonoBehaviour
     public static RoundCounter Instance { get; private set; }
 
     public event Action WinAchieved;
+    public event Action<int> RoundCountChange;
 
     [SerializeField] private GameObject _countDisplay;
-    [SerializeField] private GameObject _textDisplay;
 
     [SerializeField] private int _maxRounds = 10;
 
@@ -26,17 +26,18 @@ public class RoundCounter : MonoBehaviour
 
     void Start()
     {
-        _textDisplay.GetComponent<TextMeshProUGUI>().text = $"Round {_roundCount}/10";
+        RoundCountChange?.Invoke(_roundCount);
     }
 
     public void IncrementWave()
     {
         _roundCount++;
-        _textDisplay.GetComponent<TextMeshProUGUI>().text = $"Round {_roundCount}/10";
 
-        if (_roundCount == _maxRounds) {
+        if (_roundCount >= _maxRounds) {
             WinAchieved?.Invoke();
         }
+
+        RoundCountChange?.Invoke(_roundCount);
     }
 
     public void ShowUI(bool state)

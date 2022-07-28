@@ -24,10 +24,11 @@ public class CardContainer : MonoBehaviour
     private Card _selectedCard;
     private CardDeck _cardDeck;
     private Card[] _cardPrefabs;
-    private List<GameObject> _cardsOnHand;
+    private List<GameObject> _cardsOnHand = new List<GameObject>();
     private TileSelector _tileSelector;
 
     private int _usesRemaining;
+    private bool _gameEnd = false;
 
     void OnValidate()
     {
@@ -49,8 +50,7 @@ public class CardContainer : MonoBehaviour
     {
         _cardDeck = GetComponent<CardDeck>();
         _tileSelector = GetComponent<TileSelector>();
-
-        RoundCounter.Instance.WinAchieved += HideUI;
+        RoundCounter.Instance.WinAchieved += () => { _gameEnd = true; };
     }
 
     void Update()
@@ -82,7 +82,7 @@ public class CardContainer : MonoBehaviour
 
             if (_usesRemaining == 0) {
                 _remainingActions.SetActive(false);
-                CloseMenu?.Invoke();
+                HideUI();
                 return;
             }
 
@@ -100,18 +100,23 @@ public class CardContainer : MonoBehaviour
 
     public void ShowUI()
     {
-        _cardInventory.SetActive(true);
+        if (_gameEnd == true) {
+            return;
+        }
 
-        _cardsOnHand = new List<GameObject>();
+        RoundCounter.Instance.ShowUI(false);
+
+        _cardInventory.SetActive(true);
 
         DisplayCards(_amountOfCards);
 
         _usesRemaining = _maxUses;
         _remainingActions.SetActive(true);
+
         UpdateActions?.Invoke(_usesRemaining);
     }
 
-    public void HideUI()
+    private void HideUI()
     {
         foreach (GameObject card in _cardsOnHand) {
             card.GetComponent<Card>().Clicked -= SelectCard;
@@ -122,8 +127,9 @@ public class CardContainer : MonoBehaviour
         _cardInventory.SetActive(false);
         _remainingActions.SetActive(false);
 
+        CloseMenu?.Invoke();
+
         RoundCounter.Instance.ShowUI(true);
-        RoundCounter.Instance.WinAchieved -= HideUI;
     }
 
     private void DisplayCards(int amount)
