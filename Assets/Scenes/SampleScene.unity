@@ -588,14 +588,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef75f6b4c50ea064da55707891d7848b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 1509998629}
+  _textPrefab: {fileID: 722816329926473205, guid: 2a7b8c16f1bf6dd4680a4b3f922b7d46, type: 3}
   _activeTime: 0.7
   _offset: 1.5
   _sidesOffset: 0.2
-  _textSizes:
-  - 14
-  - 16
-  _camera: {fileID: 1509998629}
-  _textPrefab: {fileID: 722816329926473205, guid: 2a7b8c16f1bf6dd4680a4b3f922b7d46, type: 3}
+  _minSize: 14
+  _maxSize: 16
 --- !u!222 &1575561032
 CanvasRenderer:
   m_ObjectHideFlags: 0

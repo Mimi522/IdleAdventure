@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -8,17 +7,30 @@ public class DamagePopUp : MonoBehaviour
 {
     public static DamagePopUp Instance { get; private set; }
 
-    [SerializeField] private float _activeTime = 1.5f;
-    [SerializeField] private float _offset;
-    [SerializeField] private float _sidesOffset;
-    [SerializeField] private float[] _textSizes;
     [SerializeField] private Camera _camera;
     [SerializeField] private GameObject _textPrefab;
+
+    // Text configuration
+    [SerializeField] private float _activeTime = 0.7f;
+    [SerializeField] private float _offset = 1.5f;
+    [SerializeField] private float _sidesOffset = 0.2f;
+    [SerializeField] private float _minSize = 14;
+    [SerializeField] private float _maxSize = 16;
+
+    private DamagePopUpUI _damageUI;
 
     void OnValidate()
     {
         if (_camera == null) {
             Debug.LogError("No battle camera found.");
+        }
+
+        if (_textPrefab == null) {
+            Debug.LogError("No prefab object set.");
+        }
+
+        if (_textPrefab.GetComponent<DamagePopUpUI>() == null) {
+            Debug.LogError("Missing UI component.");
         }
     }
 
@@ -33,15 +45,22 @@ public class DamagePopUp : MonoBehaviour
 
     public void ShowDamage(Vector3 position, int damage)
     {
-        position += Vector3.up * _offset;
-        position += new Vector3(Random.Range(-1 * _sidesOffset, 1 * _sidesOffset), 0, 0);
-        Vector3 textPosition = _camera.WorldToScreenPoint(position);
-        GameObject textObject = Instantiate(_textPrefab, textPosition, Quaternion.identity, transform);
+        Vector3 textPosition = CalculateScreenPosition(position);
 
-        TextMeshProUGUI textCamp = textObject.GetComponent<TextMeshProUGUI>();
-        textCamp.text = damage.ToString();
-        textCamp.fontSize = Random.Range(_textSizes[0], _textSizes[1]);
+        GameObject textObject = Instantiate(_textPrefab, textPosition, Quaternion.identity, transform);
+        _damageUI = textObject.GetComponent<DamagePopUpUI>();
+
+        _damageUI.UpdateText(damage, _minSize, _maxSize);
 
         Destroy(textObject, _activeTime);
+    }
+
+    private Vector3 CalculateScreenPosition(Vector3 targetPosition)
+    {
+        targetPosition += Vector3.up * _offset;
+        targetPosition += new Vector3(Random.Range(-1 * _sidesOffset, 1 * _sidesOffset), 0, 0);
+
+        Vector3 textPosition = _camera.WorldToScreenPoint(targetPosition);
+        return textPosition;
     }
 }
