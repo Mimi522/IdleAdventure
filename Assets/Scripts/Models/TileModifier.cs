@@ -13,7 +13,7 @@ public class TileModifier : ScriptableObject
     [TextArea] public string Description;
 
     public GameObject VisualPrefab;
-    public Sprite CardVisual;
+    public Sprite CardSprite;
 
     public TileType ValidTarget;
 

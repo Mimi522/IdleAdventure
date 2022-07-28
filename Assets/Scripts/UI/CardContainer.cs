@@ -43,11 +43,14 @@ public class CardContainer : MonoBehaviour
         } else {
             Instance = this;
         }
+    }
 
+    void Start()
+    {
         _cardDeck = GetComponent<CardDeck>();
         _tileSelector = GetComponent<TileSelector>();
 
-        WaveCounter.Instance.WinAchieved += HideUI;
+        RoundCounter.Instance.WinAchieved += HideUI;
     }
 
     void Update()
@@ -119,7 +122,8 @@ public class CardContainer : MonoBehaviour
         _cardInventory.SetActive(false);
         _remainingActions.SetActive(false);
 
-        WaveCounter.Instance.WinAchieved -= HideUI;
+        RoundCounter.Instance.ShowUI(true);
+        RoundCounter.Instance.WinAchieved -= HideUI;
     }
 
     private void DisplayCards(int amount)
@@ -128,7 +132,7 @@ public class CardContainer : MonoBehaviour
 
         for (int i = 0; i < _cardPrefabs.Length; i++) {
             GameObject cardVisual = Instantiate(_cardPrefabs[i].gameObject, _cardInventory.transform);
-            cardVisual.GetComponent<Image>().sprite = _cardPrefabs[i].Modifier.CardVisual;
+            cardVisual.GetComponent<Image>().sprite = _cardPrefabs[i].Modifier.CardSprite;
             cardVisual.GetComponent<Card>().Clicked += SelectCard;
             _cardsOnHand.Add(cardVisual);
         }

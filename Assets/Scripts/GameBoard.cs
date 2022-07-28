@@ -51,8 +51,8 @@ public class GameBoard : MonoBehaviour
         InstantiatePlayer();
         SetTargetForPlayer();
 
-        WaveCounter.Instance.WinAchieved += WinGame;
-        BattleManager.Instance.OnPlayerDeath += StopGame;
+        RoundCounter.Instance.WinAchieved += WinGame;
+        BattleManager.Instance.OnPlayerDeath += LoseGame;
     }
 
     // Start is called before the first frame update
@@ -108,7 +108,7 @@ public class GameBoard : MonoBehaviour
             tileData = tile.GetComponent<Tile>();
             tileData.TileType = TileType.Active;
 
-            if (i == 2) {
+            if (i == 0) {
                 tileData.TryApplyModifier(BaseCamp);
             } else if (i == 4) {
                 tileData.TryApplyModifier(MonsterCamp);
@@ -158,14 +158,18 @@ public class GameBoard : MonoBehaviour
         SetTargetForPlayer();
     }
 
-    private void StopGame()
+    private void LoseGame()
     {
         _walking = false;
+        BattleManager.Instance.OnPlayerDeath -= LoseGame;
     }
 
     private void WinGame()
     {
         _walking = false;
         _winUI.SetActive(true);
+
+        RoundCounter.Instance.ShowUI(true);
+        RoundCounter.Instance.WinAchieved -= WinGame;
     }
 }

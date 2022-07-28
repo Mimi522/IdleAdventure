@@ -17,13 +17,16 @@ public class Camp : TileModifier
         CardContainer.Instance.CloseMenu += FinishRest;
         CardContainer.Instance.ShowUI();
 
-        WaveCounter.Instance.IncrementWave();
+        RoundCounter.Instance.IncrementWave();
+        RoundCounter.Instance.ShowUI(false);
     }
 
     private void FinishRest()
     {
         CardContainer.Instance.HideUI();
         CardContainer.Instance.CloseMenu -= FinishRest;
+
+        RoundCounter.Instance.ShowUI(true);
 
         EndEvent();
     }
