@@ -12,6 +12,7 @@ public class Camp : TileModifier
 
     private BattleManager _battleManager;
     private CardContainer _cardContainer;
+    private WaveCounter _waveCounter;
 
     public override void OnEntered()
     {
@@ -27,6 +28,10 @@ public class Camp : TileModifier
     {
         _cardContainer.HideUI();
         _cardContainer.CloseMenu -= FinishRest;
+
+        _waveCounter = WaveCounter.Instance;
+        _waveCounter.IncrementWave();
+
         EndEvent();
     }
 }
