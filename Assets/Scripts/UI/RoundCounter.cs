@@ -1,8 +1,9 @@
 using System;
-using System.Collections;
-using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Count the rounds passed and enable/disable ui.
+/// </summary>
 public class RoundCounter : MonoBehaviour
 {
     public static RoundCounter Instance { get; private set; }

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Class containing a modifier that can be applied in the board game.
+/// Class representing a clickable card that contains a modifier.
 /// </summary>
 [RequireComponent(typeof(Button))]
 public class Card : MonoBehaviour

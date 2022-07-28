@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Class to show the damage taken with an pop up ui.
+/// </summary>
 public class DamagePopUp : MonoBehaviour
 {
     public static DamagePopUp Instance { get; private set; }
