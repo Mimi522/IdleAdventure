@@ -22,7 +22,6 @@ public class DamagePopUp : MonoBehaviour
     void Awake()
     {
         if (Instance != null && Instance != this) {
-            //Instance._camera = this._camera;
             Destroy(this);
         } else {
             Instance = this;
