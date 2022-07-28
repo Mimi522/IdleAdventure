@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Restart game
+/// </summary>
+[RequireComponent(typeof(Button))]
 public class Restart : MonoBehaviour
 {
     public void RestartScene()
