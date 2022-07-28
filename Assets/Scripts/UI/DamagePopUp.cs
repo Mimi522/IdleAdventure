@@ -5,8 +5,6 @@ using UnityEngine;
 /// </summary>
 public class DamagePopUp : MonoBehaviour
 {
-    public static DamagePopUp Instance { get; private set; }
-
     [SerializeField] private Camera _camera;
     [SerializeField] private GameObject _textPrefab;
 
@@ -31,15 +29,6 @@ public class DamagePopUp : MonoBehaviour
 
         if (_textPrefab.GetComponent<DamagePopUpUI>() == null) {
             Debug.LogError("Missing UI component.");
-        }
-    }
-
-    void Awake()
-    {
-        if (Instance != null && Instance != this) {
-            Destroy(this);
-        } else {
-            Instance = this;
         }
     }
 

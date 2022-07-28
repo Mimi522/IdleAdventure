@@ -314,6 +314,7 @@ MonoBehaviour:
   - {fileID: 229339532}
   _arena: {fileID: 1369873799}
   _gameOverUI: {fileID: 1810454766}
+  _damageCanvas: {fileID: 1575561030}
   _delayAfterBattle: 2
   _player: {fileID: 1030077410}
 --- !u!1 &1369873799 stripped

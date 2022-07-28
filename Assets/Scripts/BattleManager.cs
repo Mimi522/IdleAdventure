@@ -18,6 +18,7 @@ public partial class BattleManager : MonoBehaviour
 
     [SerializeField] private GameObject _arena;
     [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private DamagePopUp _damageCanvas;
 
     [SerializeField] private float _delayAfterBattle = 2;
 
@@ -58,7 +59,7 @@ public partial class BattleManager : MonoBehaviour
     private void PlayerAttack(DamageInfo damageInfo)
     {
         if (_enemies.Count > 0) {
-            DamagePopUp.Instance.ShowDamage(_enemies[0].transform.position, damageInfo.Damage);
+            _damageCanvas.ShowDamage(_enemies[0].transform.position, damageInfo.Damage);
             _enemies[0].TakeDamage(damageInfo.Damage);
             Debug.Log(string.Format("Player inflicts {0} damage on enemy!", damageInfo.Damage));
         }
@@ -67,7 +68,7 @@ public partial class BattleManager : MonoBehaviour
     private void EnemyAttack(DamageInfo damageInfo)
     {
         if (_player.CurrentHp > 0) {
-            DamagePopUp.Instance.ShowDamage(_player.transform.position, damageInfo.Damage);
+            _damageCanvas.ShowDamage(_player.transform.position, damageInfo.Damage);
             _player.TakeDamage(damageInfo.Damage);
             Debug.Log(String.Format("Enemy inflicts {0} damage on player!", damageInfo.Damage));
         }
