@@ -12,15 +12,15 @@ public class CardContainer : MonoBehaviour
 {
     public static CardContainer Instance { get; private set; }
 
-    public event Action<Card> UpdateText;
-    public event Action CloseMenu;
-    public UnityEvent<int> OnTakingAction;
-
     [SerializeField] private GameObject _cardInventory;
     [SerializeField] private GameObject _cardInformation;
     [SerializeField] private GameObject _remainingActions;
     [SerializeField] private int _amountOfCards = 3;
     [SerializeField] private int _maxUses = 2;
+
+    public event Action CloseMenu;
+    public UnityEvent<TileModifier> OnSelectingCard;
+    public UnityEvent<int> OnTakingAction;
 
     private Card _selectedCard;
     private CardDeck _cardDeck;
@@ -96,7 +96,7 @@ public class CardContainer : MonoBehaviour
         _selectedCard = card;
 
         _cardInformation.SetActive(true);
-        UpdateText?.Invoke(card);
+        OnSelectingCard?.Invoke(card.Modifier);
     }
 
     public void ShowUI()

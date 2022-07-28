@@ -139,6 +139,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1979807496966644909, guid: 430ba22efdadb214d92255f4a8a5d86a, type: 3}
   m_PrefabInstance: {fileID: 1979807496671321485}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &419969975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 419969975, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+  m_PrefabInstance: {fileID: 7054806422925681530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc22165cad872c49a6c6ab2a7e4224f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &570745332 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1126554111, guid: d70d56b864f349f4eb50761742e7b342, type: 3}
@@ -967,6 +978,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7054806422199802733, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: m_Name
+      value: CardInformationUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054806423043643593, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: m_Name
+      value: RemainingActionsUI
+      objectReference: {fileID: 0}
     - target: {fileID: 7054806423401585841, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1051,12 +1070,59 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnSelectingCard.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnSelectingCard.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnTakingAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 419969975}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnSelectingCard.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7054806422925681531}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnSelectingCard.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnTakingAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnSelectingCard.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateCardInformation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnSelectingCard.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CardInformation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054806423401585846, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: OnSelectingCard.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7054806423401585853, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
       propertyPath: m_Name
       value: CardUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+--- !u!114 &7054806422925681531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2011080023491378581, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+  m_PrefabInstance: {fileID: 7054806422925681530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b697fc5fae5910440b5223118c5e6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7986109613332303363
 Transform:
   m_ObjectHideFlags: 0

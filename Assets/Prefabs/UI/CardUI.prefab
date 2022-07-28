@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7054806421997279150}
   - component: {fileID: 7054806421997279148}
   - component: {fileID: 7054806421997279151}
-  - component: {fileID: 7054806421997279149}
   m_Layer: 5
   m_Name: CardInformation
   m_TagString: Untagged
@@ -77,18 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7054806421997279149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7054806421997279145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b697fc5fae5910440b5223118c5e6422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7054806422199802733
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +87,7 @@ GameObject:
   - component: {fileID: 7054806422199802720}
   - component: {fileID: 7054806422199802723}
   - component: {fileID: 7054806422199802722}
+  - component: {fileID: 2011080023491378581}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -223,6 +211,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2011080023491378581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054806422199802733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b697fc5fae5910440b5223118c5e6422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7054806423043643593
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc22165cad872c49a6c6ab2a7e4224f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textDisplay: {fileID: 7054806423043643599}
 --- !u!1 &7054806423401585853
 GameObject:
   m_ObjectHideFlags: 0
