@@ -7,7 +7,12 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class DamagePopUpUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _textDisplay;
+    private TextMeshProUGUI _textDisplay;
+
+    void Awake()
+    {
+        _textDisplay = GetComponent<TextMeshProUGUI>();
+    }
 
     public void UpdateText(int value, float minSize, float maxSize)
     {
