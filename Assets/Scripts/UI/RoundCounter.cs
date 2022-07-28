@@ -18,6 +18,13 @@ public class RoundCounter : MonoBehaviour
 
     private int _roundCount = 1;
 
+    void OnValidate()
+    {
+        if (_countDisplay == null) {
+            Debug.LogError("Round counter ui not set.");
+        }
+    }
+
     void Awake()
     {
         if (Instance != null && Instance != this) {
