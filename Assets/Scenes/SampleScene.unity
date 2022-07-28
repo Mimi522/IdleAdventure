@@ -542,7 +542,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -773,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1979807496966644910, guid: 430ba22efdadb214d92255f4a8a5d86a, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 430ba22efdadb214d92255f4a8a5d86a, type: 3}
 --- !u!1001 &5328641730948775886
@@ -870,6 +874,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5328641732742440767, guid: 2d5ccdb49e47d504bb7055a6527accb8, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d5ccdb49e47d504bb7055a6527accb8, type: 3}
 --- !u!1001 &5942403383912844094
@@ -948,6 +956,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7054806423401585840, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7054806423401585841, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1211,6 +1223,10 @@ PrefabInstance:
     - target: {fileID: 9188698574535153418, guid: 8885acda8fd8de1428b0761823cabf0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188698574535153419, guid: 8885acda8fd8de1428b0761823cabf0c, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188698574535153422, guid: 8885acda8fd8de1428b0761823cabf0c, type: 3}
       propertyPath: m_Name
