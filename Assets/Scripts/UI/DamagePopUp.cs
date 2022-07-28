@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Class to show the damage taken with an pop up ui.
+/// Class to show the damage taken with a pop up ui.
 /// </summary>
 public class DamagePopUp : MonoBehaviour
 {
