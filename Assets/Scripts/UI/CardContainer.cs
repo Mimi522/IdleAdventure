@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 /// <summary>
@@ -12,8 +13,8 @@ public class CardContainer : MonoBehaviour
     public static CardContainer Instance { get; private set; }
 
     public event Action<Card> UpdateText;
-    public event Action<int> UpdateActions;
     public event Action CloseMenu;
+    public UnityEvent<int> OnTakingAction;
 
     [SerializeField] private GameObject _cardInventory;
     [SerializeField] private GameObject _cardInformation;
@@ -86,7 +87,7 @@ public class CardContainer : MonoBehaviour
                 return;
             }
 
-            UpdateActions?.Invoke(_usesRemaining);
+            OnTakingAction?.Invoke(_usesRemaining);
         }
     }
 
@@ -113,7 +114,7 @@ public class CardContainer : MonoBehaviour
         _usesRemaining = _maxUses;
         _remainingActions.SetActive(true);
 
-        UpdateActions?.Invoke(_usesRemaining);
+        OnTakingAction?.Invoke(_usesRemaining);
     }
 
     private void HideUI()

@@ -11,17 +11,7 @@ public class RoundUI : MonoBehaviour
     // getcomponent call
     [SerializeField] private TextMeshProUGUI _textDisplay;
 
-    void OnEnable()
-    {
-        RoundCounter.Instance.RoundCountChange += UpdateText;
-    }
-
-    void OnDisable()
-    {
-        RoundCounter.Instance.RoundCountChange -= UpdateText;
-    }
-
-    private void UpdateText(int amount)
+    public void UpdateText(int amount)
     {
         _textDisplay.text = $"Round {amount}/10";
     }

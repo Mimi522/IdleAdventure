@@ -11,17 +11,7 @@ public class RemainingActionsUI : MonoBehaviour
     // getcomponent call
     [SerializeField] private TextMeshProUGUI _textDisplay;
 
-    void OnEnable()
-    {
-        CardContainer.Instance.UpdateActions += UpdateText;
-    }
-
-    void OnDisable()
-    {
-        CardContainer.Instance.UpdateActions -= UpdateText;
-    }
-
-    private void UpdateText(int amount)
+    public void UpdateText(int amount)
     {
         _textDisplay.text = $"Please use {amount} card{(amount > 1 ? "s" : "")}";
     }

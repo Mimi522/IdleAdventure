@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Count the rounds passed and enable/disable ui.
@@ -9,7 +10,7 @@ public class RoundCounter : MonoBehaviour
     public static RoundCounter Instance { get; private set; }
 
     public event Action WinAchieved;
-    public event Action<int> RoundCountChange;
+    public UnityEvent<int> OnFinishingRound;
 
     [SerializeField] private GameObject _countDisplay;
 
@@ -28,7 +29,7 @@ public class RoundCounter : MonoBehaviour
 
     void Start()
     {
-        RoundCountChange?.Invoke(_roundCount);
+        OnFinishingRound?.Invoke(_roundCount);
     }
 
     public void IncrementWave()
@@ -39,7 +40,7 @@ public class RoundCounter : MonoBehaviour
             WinAchieved?.Invoke();
         }
 
-        RoundCountChange?.Invoke(_roundCount);
+        OnFinishingRound?.Invoke(_roundCount);
     }
 
     public void ShowUI(bool state)
