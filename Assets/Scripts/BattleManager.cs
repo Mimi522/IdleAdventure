@@ -14,9 +14,8 @@ public partial class BattleManager : MonoBehaviour
     public event Action OnBattleEnded;
     public event Action OnPlayerDeath;
 
-    public SpawnLocationProvider[] SpawnPositions;
-
     [SerializeField] private GameObject _arena;
+    [SerializeField] private SpawnLocationProvider[] _spawnPositions;
     [SerializeField] private DamagePopUp _damageCanvas;
 
     [SerializeField] private float _delayAfterBattle = 2;
@@ -26,7 +25,26 @@ public partial class BattleManager : MonoBehaviour
         get { return _player; }
     }
 
-    private List<Entity> _enemies;
+    private List<Entity> _enemies = new List<Entity>();
+
+    void OnValidate()
+    {
+        if (_arena == null) {
+            Debug.LogError("Arena not set.");
+        }
+
+        if (_spawnPositions == null) {
+            Debug.LogError("Spawn positions not set.");
+        }
+
+        if (_damageCanvas == null) {
+            Debug.LogError("Damage canvas not set.");
+        }
+
+        if (_player == null) {
+            Debug.LogError("Player not set.");
+        }
+    }
 
     void Awake()
     {
@@ -35,10 +53,18 @@ public partial class BattleManager : MonoBehaviour
         } else {
             Instance = this;
         }
-        _enemies = new List<Entity>();
+    }
 
+    void OnEnable()
+    {
         _player.OnAttack += PlayerAttack;
         _player.OnDeath += PlayerDeath;
+    }
+
+    void OnDisable()
+    {
+        _player.OnAttack -= PlayerAttack;
+        _player.OnDeath -= PlayerDeath;
     }
 
     public void StartBattle(GameObject[] enemiesPrefab)
@@ -75,13 +101,13 @@ public partial class BattleManager : MonoBehaviour
 
     private void SpawnEnemies(GameObject[] enemiesPrefab)
     {
-        if (enemiesPrefab.Length > SpawnPositions.Length) {
+        if (enemiesPrefab.Length > _spawnPositions.Length) {
             Debug.LogError("Number of enemies not supported.");
             return;
         }
 
         // Enemies positions varies accord to the amount of enmies in battle
-        List<Vector3> positions = SpawnPositions[enemiesPrefab.Length - 1].GetLocations();
+        List<Vector3> positions = _spawnPositions[enemiesPrefab.Length - 1].GetLocations();
 
         for (int i = 0; i < positions.Count; i++) {
             GameObject enemy = Instantiate(enemiesPrefab[i], positions[i], Quaternion.identity, transform);

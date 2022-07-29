@@ -363,10 +363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310cacc0951d40b489a4c76151d1b78b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPositions:
+  _arena: {fileID: 1369873799}
+  _spawnPositions:
   - {fileID: 570745332}
   - {fileID: 229339532}
-  _arena: {fileID: 1369873799}
   _damageCanvas: {fileID: 1575561030}
   _delayAfterBattle: 2
   _player: {fileID: 1030077410}
