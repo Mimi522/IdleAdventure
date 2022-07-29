@@ -367,7 +367,6 @@ MonoBehaviour:
   - {fileID: 570745332}
   - {fileID: 229339532}
   _arena: {fileID: 1369873799}
-  _gameOverUI: {fileID: 1810454766}
   _damageCanvas: {fileID: 1575561030}
   _delayAfterBattle: 2
   _player: {fileID: 1030077410}
@@ -745,6 +744,7 @@ MonoBehaviour:
   - {x: 1, y: 2}
   - {x: 1, y: 1}
   _winUI: {fileID: 384170272}
+  _gameOverUI: {fileID: 1810454766}
 --- !u!4 &1749379764
 Transform:
   m_ObjectHideFlags: 0

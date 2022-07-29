@@ -86,8 +86,7 @@ public class GameBoard : MonoBehaviour
 
                 Vector3 tilePosition = new Vector3(_spacing * j, 0, _spacing * i);
 
-                //Tile tile = new Tile(GrassPrefabsVariant[grassVariant], tilePosition);
-                GameObject tile = Instantiate(GrassPrefabsVariant[grassVariant], tilePosition, Quaternion.identity);
+                GameObject tile = Instantiate(GrassPrefabsVariant[grassVariant], tilePosition, Quaternion.identity, transform);
 
                 _boardGrid.SetTile(i, j, tile.GetComponent<Tile>());
             }
@@ -99,10 +98,9 @@ public class GameBoard : MonoBehaviour
         for (int i = 0; i < _pathPositions.Count; i++) {
             // Invert those on inspector eventually
             Tile tileData = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
-            //tileData.UpdateTile(PathPrefab);
             Vector3 tilePosition = tileData.transform.position;
             Destroy(tileData.gameObject);
-            GameObject tile = Instantiate(PathPrefab, tilePosition, Quaternion.identity);
+            GameObject tile = Instantiate(PathPrefab, tilePosition, Quaternion.identity, transform);
             _boardGrid.SetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y, tile.GetComponent<Tile>());
             tileData = tile.GetComponent<Tile>();
             tileData.TileType = TileType.Active;
@@ -126,7 +124,7 @@ public class GameBoard : MonoBehaviour
 
         Vector3 playerPosition = tilePosition;
 
-        _playerPawn = Instantiate(PawnPrefab, playerPosition, Quaternion.identity);
+        _playerPawn = Instantiate(PawnPrefab, playerPosition, Quaternion.identity, transform);
     }
 
     private void SetTargetForPlayer()

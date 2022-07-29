@@ -84,7 +84,7 @@ public partial class BattleManager : MonoBehaviour
         List<Vector3> positions = SpawnPositions[enemiesPrefab.Length - 1].GetLocations();
 
         for (int i = 0; i < positions.Count; i++) {
-            GameObject enemy = Instantiate(enemiesPrefab[i], positions[i], Quaternion.identity);
+            GameObject enemy = Instantiate(enemiesPrefab[i], positions[i], Quaternion.identity, transform);
             _enemies.Add(enemy.GetComponent<Entity>());
             _enemies[i].OnAttack += EnemyAttack;
             _enemies[i].OnDeath += EnemyDeath;
