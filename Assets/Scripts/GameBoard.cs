@@ -27,6 +27,7 @@ public class GameBoard : MonoBehaviour
     [SerializeField] private List<Vector2> _pathPositions;
 
     [SerializeField] private GameObject _winUI;
+    [SerializeField] private GameObject _gameOverUI;
 
     private Vector3 _newPosition;
 
@@ -159,8 +160,11 @@ public class GameBoard : MonoBehaviour
     private void LoseGame()
     {
         _walking = false;
+
         RoundCounter.Instance.WinAchieved -= WinGame;
         BattleManager.Instance.OnPlayerDeath -= LoseGame;
+
+        _gameOverUI.SetActive(true);
     }
 
     private void WinGame()

@@ -17,7 +17,6 @@ public partial class BattleManager : MonoBehaviour
     public SpawnLocationProvider[] SpawnPositions;
 
     [SerializeField] private GameObject _arena;
-    [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private DamagePopUp _damageCanvas;
 
     [SerializeField] private float _delayAfterBattle = 2;
@@ -106,7 +105,6 @@ public partial class BattleManager : MonoBehaviour
     private void PlayerDeath(Entity player)
     {
         player.Dispose();
-        _gameOverUI.SetActive(true);
         OnPlayerDeath?.Invoke();
         Debug.Log("GAME OVER");
     }
