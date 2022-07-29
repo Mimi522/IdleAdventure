@@ -316,6 +316,7 @@ MonoBehaviour:
   _roundsDisplay: {fileID: 1297557571}
   _inventoryDisplay: {fileID: 1023409667272741583}
   _actionsDisplay: {fileID: 923195735}
+  _informationDisplay: {fileID: 1542190291}
   _roundCounter: {fileID: 1501617248}
   _cardContainer: {fileID: 610271180}
 --- !u!1 &1287683853
@@ -545,6 +546,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!1 &1542190291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054806421997279145, guid: 4b49b9690afbda1458726eb1be05231d, type: 3}
+  m_PrefabInstance: {fileID: 7054806422925681530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1575561025
 GameObject:
   m_ObjectHideFlags: 0

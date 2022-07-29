@@ -12,6 +12,7 @@ public class EventManager : MonoBehaviour
     [SerializeField] private GameObject _roundsDisplay;
     [SerializeField] private GameObject _inventoryDisplay;
     [SerializeField] private GameObject _actionsDisplay;
+    [SerializeField] private GameObject _informationDisplay;
 
     [SerializeField] private RoundCounter _roundCounter;
     [SerializeField] private CardContainer _cardContainer;
@@ -56,5 +57,10 @@ public class EventManager : MonoBehaviour
         CloseCardMenu?.Invoke();
 
         _roundsDisplay.SetActive(true);
+    }
+
+    public void ShowCardInformation(bool active)
+    {
+        _informationDisplay.SetActive(active);
     }
 }
