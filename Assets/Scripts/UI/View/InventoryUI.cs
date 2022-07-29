@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Card inventory UI
+/// </summary>
 [RequireComponent(typeof(CardDeck))]
 public class InventoryUI : MonoBehaviour
 {

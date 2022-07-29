@@ -5,7 +5,7 @@ using UnityEngine;
 /// UI text displaying the information of the modifiers cards.
 /// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class CardInformation : MonoBehaviour
+public class CardInformationUI : MonoBehaviour
 {
     private TextMeshProUGUI _textCamp;
 
