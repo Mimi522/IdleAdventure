@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Scriptable object representing a passive modifier that generates a buff to the player.
+/// </summary>
 [CreateAssetMenu(menuName = "ScriptablesObjects/Objects/Player Buff")]
 public class PlayerBuff : TileModifier
 {
