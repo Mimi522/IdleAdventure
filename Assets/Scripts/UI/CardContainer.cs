@@ -19,7 +19,6 @@ public class CardContainer : MonoBehaviour
 
 
     private Card _selectedCard;
-    private List<GameObject> _cardsOnHand = new List<GameObject>();
     private TileSelector _tileSelector;
 
     private int _usesRemaining;
@@ -88,19 +87,19 @@ public class CardContainer : MonoBehaviour
 
     private void SetCardsCallbacks()
     {
-        foreach (GameObject card in _cardInventory._cardsOnHand) {
+        foreach (GameObject card in _cardInventory.CardsOnHand) {
             card.GetComponent<Card>().Clicked += SelectCard;
         }
     }
 
     private void DiscardCards()
     {
-        foreach (GameObject card in _cardsOnHand) {
+        foreach (GameObject card in _cardInventory.CardsOnHand) {
             card.GetComponent<Card>().Clicked -= SelectCard;
             Destroy(card);
         }
 
-        _cardsOnHand.Clear();
+        _cardInventory.CardsOnHand.Clear();
 
         EventUIManager.Instance.CloseCardInterface();
     }
@@ -109,7 +108,7 @@ public class CardContainer : MonoBehaviour
     {
         EventUIManager.Instance.ShowCardInformation(false);
 
-        _cardsOnHand.Remove(_selectedCard.gameObject);
+        _cardInventory.CardsOnHand.Remove(_selectedCard.gameObject);
         Destroy(_selectedCard.gameObject);
 
         _selectedCard = null;

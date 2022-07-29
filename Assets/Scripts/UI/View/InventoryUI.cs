@@ -10,7 +10,7 @@ public class InventoryUI : MonoBehaviour
 {
     private CardDeck _cardDeck;
     private Card[] _cardPrefabs;
-    public List<GameObject> _cardsOnHand { get; private set; } = new List<GameObject>();
+    public List<GameObject> CardsOnHand { get; private set; } = new List<GameObject>();
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < _cardPrefabs.Length; i++) {
             GameObject cardVisual = Instantiate(_cardPrefabs[i].gameObject, transform);
             cardVisual.GetComponent<Image>().sprite = _cardPrefabs[i].Modifier.CardSprite;
-            _cardsOnHand.Add(cardVisual);
+            CardsOnHand.Add(cardVisual);
         }
     }
 }
