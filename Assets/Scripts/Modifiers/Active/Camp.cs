@@ -14,15 +14,13 @@ public class Camp : TileModifier
     {
         BattleManager.Instance.Player.Heal(HealAmount);
 
-        RoundCounter.Instance.IncrementWave();
-
-        CardContainer.Instance.CloseMenu += FinishRest;
-        CardContainer.Instance.ShowUI();
+        EventManager.Instance.CloseCardMenu += FinishRest;
+        EventManager.Instance.OpenCardInterface();
     }
 
     private void FinishRest()
     {
-        CardContainer.Instance.CloseMenu -= FinishRest;
+        EventManager.Instance.CloseCardMenu -= FinishRest;
 
         EndEvent();
     }

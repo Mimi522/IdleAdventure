@@ -9,21 +9,12 @@ public class RoundCounter : MonoBehaviour
 {
     public static RoundCounter Instance { get; private set; }
 
-    [SerializeField] private GameObject _countDisplay;
-
     [SerializeField] private int _maxRounds = 10;
 
     public event Action WinAchieved;
-    public UnityEvent<int> OnFinishingRound;
+    public UnityEvent<int> OnFinishRound;
 
     private int _roundCount = 1;
-
-    void OnValidate()
-    {
-        if (_countDisplay == null) {
-            Debug.LogError("Round counter ui not set.");
-        }
-    }
 
     void Awake()
     {
@@ -36,7 +27,7 @@ public class RoundCounter : MonoBehaviour
 
     void Start()
     {
-        OnFinishingRound?.Invoke(_roundCount);
+        OnFinishRound?.Invoke(_roundCount);
     }
 
     public void IncrementWave()
@@ -47,11 +38,6 @@ public class RoundCounter : MonoBehaviour
             WinAchieved?.Invoke();
         }
 
-        OnFinishingRound?.Invoke(_roundCount);
-    }
-
-    public void ShowUI(bool state)
-    {
-        _countDisplay.SetActive(state);
+        OnFinishRound?.Invoke(_roundCount);
     }
 }

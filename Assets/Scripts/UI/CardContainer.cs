@@ -10,15 +10,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CardDeck), typeof(TileSelector))]
 public class CardContainer : MonoBehaviour
 {
-    public static CardContainer Instance { get; private set; }
-
     [SerializeField] private GameObject _cardInventory;
     [SerializeField] private GameObject _cardInformation;
     [SerializeField] private GameObject _remainingActions;
     [SerializeField] private int _amountOfCards = 3;
     [SerializeField] private int _maxUses = 2;
 
-    public event Action CloseMenu;
     public UnityEvent<TileModifier> OnSelectingCard;
     public UnityEvent<int> OnTakingAction;
 
@@ -29,7 +26,6 @@ public class CardContainer : MonoBehaviour
     private TileSelector _tileSelector;
 
     private int _usesRemaining;
-    private bool _gameEnd = false;
 
     void OnValidate()
     {
@@ -40,18 +36,8 @@ public class CardContainer : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this) {
-            Destroy(this);
-        } else {
-            Instance = this;
-        }
-    }
-
-    void Start()
-    {
         _cardDeck = GetComponent<CardDeck>();
         _tileSelector = GetComponent<TileSelector>();
-        RoundCounter.Instance.WinAchieved += () => { _gameEnd = true; };
     }
 
     void Update()
@@ -83,7 +69,7 @@ public class CardContainer : MonoBehaviour
 
             if (_usesRemaining == 0) {
                 _remainingActions.SetActive(false);
-                HideUI();
+                DiscardCards();
                 return;
             }
 
@@ -99,25 +85,15 @@ public class CardContainer : MonoBehaviour
         OnSelectingCard?.Invoke(card.Modifier);
     }
 
-    public void ShowUI()
+    public void SetCards()
     {
-        if (_gameEnd == true) {
-            return;
-        }
-
-        RoundCounter.Instance.ShowUI(false);
-
-        _cardInventory.SetActive(true);
-
         DisplayCards(_amountOfCards);
 
         _usesRemaining = _maxUses;
-        _remainingActions.SetActive(true);
-
         OnTakingAction?.Invoke(_usesRemaining);
     }
 
-    private void HideUI()
+    private void DiscardCards()
     {
         foreach (GameObject card in _cardsOnHand) {
             card.GetComponent<Card>().Clicked -= SelectCard;
@@ -125,12 +101,8 @@ public class CardContainer : MonoBehaviour
         }
 
         _cardsOnHand.Clear();
-        _cardInventory.SetActive(false);
-        _remainingActions.SetActive(false);
 
-        CloseMenu?.Invoke();
-
-        RoundCounter.Instance.ShowUI(true);
+        EventManager.Instance.CloseCardInterface();
     }
 
     private void DisplayCards(int amount)

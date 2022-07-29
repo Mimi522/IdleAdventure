@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7054806422199802722}
   - component: {fileID: 2011080023491378581}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CardInformationUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 7054806423043643599}
   - component: {fileID: 419969975}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RemainingActionsUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -487,6 +487,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f804a7e728a41bf4eb622de78d64d611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardInventory: {fileID: 8058158798644130229}
+  _cardInformation: {fileID: 7054806421997279145}
+  _remainingActions: {fileID: 7054806423681104429}
+  _amountOfCards: 3
+  _maxUses: 2
+  OnSelectingCard:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2011080023491378581}
+        m_TargetAssemblyTypeName: CardInformation, Assembly-CSharp
+        m_MethodName: UpdateCardInformation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnTakingAction:
     m_PersistentCalls:
       m_Calls:
@@ -502,11 +522,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _cardInventory: {fileID: 8058158798644130229}
-  _cardInformation: {fileID: 7054806421997279145}
-  _remainingActions: {fileID: 7054806423681104429}
-  _amountOfCards: 3
-  _maxUses: 2
 --- !u!114 &7054806423401585847
 MonoBehaviour:
   m_ObjectHideFlags: 0

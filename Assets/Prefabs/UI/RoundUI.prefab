@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134f43c35fd48a94885505cacf1e6904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textDisplay: {fileID: 9188698573026407534}
 --- !u!1 &9188698574338761494
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +336,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54db7df1f7ed99e40b6df6d73bc0746f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoundCountChange:
+  _countDisplay: {fileID: 9188698574338761494}
+  _maxRounds: 10
+  OnFinishRound:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7411218211013241792}
@@ -352,5 +353,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _countDisplay: {fileID: 9188698574338761494}
-  _maxRounds: 10
