@@ -68,6 +68,7 @@ public class GameBoard : MonoBehaviour
 
         _playerPawn.transform.position = Vector3.MoveTowards(_playerPawn.transform.position, _newPosition, _playerSpeed * Time.deltaTime);
         _playerPawn.transform.LookAt(_newPosition);
+
         if ((_newPosition - _playerPawn.transform.position).magnitude <= 0.02f) {
             if (TargetTile.ModifierData != null) {
                 CallEvent();
@@ -98,10 +99,13 @@ public class GameBoard : MonoBehaviour
         for (int i = 0; i < _pathPositions.Count; i++) {
             // Invert those on inspector eventually
             Tile tileData = _boardGrid.GetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y);
+
             Vector3 tilePosition = tileData.transform.position;
             Destroy(tileData.gameObject);
+
             GameObject tile = Instantiate(PathPrefab, tilePosition, Quaternion.identity, transform);
             _boardGrid.SetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y, tile.GetComponent<Tile>());
+
             tileData = tile.GetComponent<Tile>();
             tileData.TileType = TileType.Active;
 

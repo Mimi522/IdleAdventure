@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -62,6 +63,7 @@ public class CardContainer : MonoBehaviour
             }
 
             _cardInventory.DisplayCards(1);
+            SetCardsCallbacks();
             OnTakingAction?.Invoke(_usesRemaining);
         }
     }
