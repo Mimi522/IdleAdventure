@@ -155,16 +155,6 @@ public class GameBoard : MonoBehaviour
         SetTargetForPlayer();
     }
 
-    private void LoseGame()
-    {
-        _walking = false;
-
-        RoundCounter.Instance.WinAchieved -= WinGame;
-        BattleManager.Instance.OnPlayerDeath -= LoseGame;
-
-        _gameOverUI.SetActive(true);
-    }
-
     private void WinGame()
     {
         _walking = false;
@@ -173,5 +163,15 @@ public class GameBoard : MonoBehaviour
         BattleManager.Instance.OnPlayerDeath -= LoseGame;
 
         _winUI.SetActive(true);
+    }
+
+    private void LoseGame()
+    {
+        _walking = false;
+
+        RoundCounter.Instance.WinAchieved -= WinGame;
+        BattleManager.Instance.OnPlayerDeath -= LoseGame;
+
+        _gameOverUI.SetActive(true);
     }
 }

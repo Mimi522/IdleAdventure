@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 1050875083}
   - component: {fileID: 1050875084}
   m_Layer: 0
-  m_Name: EventManager
+  m_Name: EventUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050875082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13871e15a083bf54a9265c0f64d7bc37, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a821e74c0970ee48b23776912148ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _roundsDisplay: {fileID: 1297557571}

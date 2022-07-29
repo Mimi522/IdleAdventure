@@ -80,7 +80,7 @@ public class CardContainer : MonoBehaviour
     {
         _selectedCard = card;
 
-        EventManager.Instance.ShowCardInformation(true);
+        EventUIManager.Instance.ShowCardInformation(true);
         OnSelectingCard?.Invoke(card.Modifier);
     }
 
@@ -100,12 +100,12 @@ public class CardContainer : MonoBehaviour
 
         _cardsOnHand.Clear();
 
-        EventManager.Instance.CloseCardInterface();
+        EventUIManager.Instance.CloseCardInterface();
     }
 
     private void UseCard()
     {
-        EventManager.Instance.ShowCardInformation(false);
+        EventUIManager.Instance.ShowCardInformation(false);
 
         _cardsOnHand.Remove(_selectedCard.gameObject);
         Destroy(_selectedCard.gameObject);
