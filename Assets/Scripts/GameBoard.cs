@@ -7,14 +7,15 @@ using UnityEngine;
 /// </summary>
 public class GameBoard : MonoBehaviour
 {
-    public GameObject[] GrassPrefabsVariant;
-    public GameObject PathPrefab;
-    public GameObject PawnPrefab;
+    [SerializeField] private GameObject[] _grassPrefabsVariant;
+    [SerializeField] private GameObject _pathPrefab;
+    [SerializeField] private GameObject _pawnPrefab;
 
-    public TileModifier BaseCamp;
-    public TileModifier MonsterCamp;
-    public TileModifier MonsterCamp2;
-    public TileModifier BossCamp;
+    [SerializeField] private TileModifier _baseCamp;
+    [SerializeField] private TileModifier _monsterCamp;
+    [SerializeField] private TileModifier _monsterCamp2;
+    [SerializeField] private TileModifier _bossCamp;
+    [SerializeField] private TileModifier _buff;
 
     private GameObject _playerPawn;
 
@@ -87,9 +88,13 @@ public class GameBoard : MonoBehaviour
 
                 Vector3 tilePosition = new Vector3(_spacing * j, 0, _spacing * i);
 
-                GameObject tile = Instantiate(GrassPrefabsVariant[grassVariant], tilePosition, Quaternion.identity, transform);
+                GameObject tile = Instantiate(_grassPrefabsVariant[grassVariant], tilePosition, Quaternion.identity, transform);
 
                 _boardGrid.SetTile(i, j, tile.GetComponent<Tile>());
+
+                if (i == 0 && j == 4) {
+                    tile.GetComponent<Tile>().TryApplyModifier(_buff);
+                }
             }
         }
     }
@@ -103,20 +108,20 @@ public class GameBoard : MonoBehaviour
             Vector3 tilePosition = tileData.transform.position;
             Destroy(tileData.gameObject);
 
-            GameObject tile = Instantiate(PathPrefab, tilePosition, Quaternion.identity, transform);
+            GameObject tile = Instantiate(_pathPrefab, tilePosition, Quaternion.identity, transform);
             _boardGrid.SetTile((int)_pathPositions[i].x, (int)_pathPositions[i].y, tile.GetComponent<Tile>());
 
             tileData = tile.GetComponent<Tile>();
             tileData.TileType = TileType.Active;
 
             if (i == 0) {
-                tileData.TryApplyModifier(BaseCamp);
+                tileData.TryApplyModifier(_baseCamp);
             } else if (i == 4) {
-                tileData.TryApplyModifier(MonsterCamp);
+                tileData.TryApplyModifier(_monsterCamp);
             } else if (i == 7) {
-                tileData.TryApplyModifier(MonsterCamp2);
+                tileData.TryApplyModifier(_monsterCamp2);
             } else if (i == 13) {
-                tileData.TryApplyModifier(BossCamp);
+                tileData.TryApplyModifier(_bossCamp);
             }
         }
     }
@@ -128,7 +133,7 @@ public class GameBoard : MonoBehaviour
 
         Vector3 playerPosition = tilePosition;
 
-        _playerPawn = Instantiate(PawnPrefab, playerPosition, Quaternion.identity, transform);
+        _playerPawn = Instantiate(_pawnPrefab, playerPosition, Quaternion.identity, transform);
     }
 
     private void SetTargetForPlayer()

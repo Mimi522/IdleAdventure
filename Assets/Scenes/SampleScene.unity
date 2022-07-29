@@ -707,15 +707,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c7dde4f88b5ec4e9a74413fb5dcb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GrassPrefabsVariant:
-  - {fileID: 5029150638113952000, guid: 815e04e9323a6264e8e23067a00e218c, type: 3}
+  _grassPrefabsVariant:
   - {fileID: 5029150638113952000, guid: 1996dd970fc64db428ecc72d3318f740, type: 3}
-  PathPrefab: {fileID: 5029150638113952000, guid: aa99fdadbd6979643a3e4e61399ea6be, type: 3}
-  PawnPrefab: {fileID: 1306510727193889572, guid: b545ab349fd640047946337d670aebed, type: 3}
-  BaseCamp: {fileID: 11400000, guid: afa81a70c4bc92345b405c5e71f64e8f, type: 2}
-  MonsterCamp: {fileID: 11400000, guid: d2bded6e2d3b5c9478c87ebdb2554ac5, type: 2}
-  MonsterCamp2: {fileID: 11400000, guid: b2cc493bc4986af4dadd9887907b6f0c, type: 2}
-  BossCamp: {fileID: 11400000, guid: a3ba9c019fc63b44899ff7010b2fb73f, type: 2}
+  - {fileID: 5029150638113952000, guid: 815e04e9323a6264e8e23067a00e218c, type: 3}
+  _pathPrefab: {fileID: 5029150638113952000, guid: aa99fdadbd6979643a3e4e61399ea6be, type: 3}
+  _pawnPrefab: {fileID: 1306510727193889572, guid: b545ab349fd640047946337d670aebed, type: 3}
+  _baseCamp: {fileID: 11400000, guid: afa81a70c4bc92345b405c5e71f64e8f, type: 2}
+  _monsterCamp: {fileID: 11400000, guid: d2bded6e2d3b5c9478c87ebdb2554ac5, type: 2}
+  _monsterCamp2: {fileID: 11400000, guid: b2cc493bc4986af4dadd9887907b6f0c, type: 2}
+  _bossCamp: {fileID: 11400000, guid: a3ba9c019fc63b44899ff7010b2fb73f, type: 2}
+  _buff: {fileID: 11400000, guid: b9ca778c3337394438188f9f3736288f, type: 2}
   _rows: 9
   _columns: 6
   _spacing: 1
